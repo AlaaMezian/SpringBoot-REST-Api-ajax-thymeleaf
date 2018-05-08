@@ -9,5 +9,7 @@ import com.waffa.entity.User;
 
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Integer> {
-User findByUserEmail(String email);
+	
+	User findByUserEmail(String email);
+	User findByUserName(String userName);
 }

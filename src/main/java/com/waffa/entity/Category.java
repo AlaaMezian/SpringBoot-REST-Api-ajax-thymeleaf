@@ -17,10 +17,32 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "category")
-@Getter
-@Setter
 public class Category implements Serializable{
 		
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public Date getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
