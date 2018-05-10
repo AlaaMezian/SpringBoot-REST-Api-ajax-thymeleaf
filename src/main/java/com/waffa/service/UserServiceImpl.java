@@ -1,5 +1,7 @@
 package com.waffa.service;
 
+import static java.util.Collections.emptyList;
+
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +26,15 @@ import com.waffa.utils.CurrentDate;
 public class UserServiceImpl implements UserService {
 
 	private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 	
-
-
 	@Autowired
 	private UserRepository userRepository;
 
+	public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+	}
+	
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	    return new BCryptPasswordEncoder();
@@ -38,6 +44,15 @@ public class UserServiceImpl implements UserService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 
+	@Override
+	public User findByUserName(String userName)  throws UsernameNotFoundException{
+		User applicationUser = userRepository.findByUsername(userName);
+		  if (applicationUser == null) {
+	            throw new UsernameNotFoundException(userName);
+	        }
+		    return new User();
+	}
+	
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByUserEmail(email);
@@ -67,10 +82,10 @@ public class UserServiceImpl implements UserService {
         			 registrationModel.getUserEmail());
          }
 
-		userEntity.setUserName(registrationModel.getUserName());
+		userEntity.setUsername(registrationModel.getUserName());
 		logger.info("the user name sent is "+ registrationModel.getUserName());
 		userEntity.setUserEmail(registrationModel.getUserEmail());
-		userEntity.setEncPassword(bCryptPasswordEncoder.encode(registrationModel.getPassword()));
+		userEntity.setPassword(bCryptPasswordEncoder.encode(registrationModel.getPassword()));
 		userEntity.setIsActive(Status.Y);
 		userEntity.setMobileNumber(registrationModel.getMobileNumber());
 		userEntity.setRegDate(currentDate);
@@ -88,5 +103,7 @@ public class UserServiceImpl implements UserService {
 			throw new RegistrationException(RegistrationExceptionCode.SIGNUP_EXCEPTION, "");
 		}
 	}
+
+	
 
 }

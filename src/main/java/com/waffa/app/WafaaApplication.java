@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.waffa.controller", "com.waffa.service", "com.waffa.config"})
+@ComponentScan(basePackages = {"com.waffa.controller", "com.waffa.service", "com.waffa.config","com.waffa.security"})
 @EnableJpaRepositories("com.waffa.respository")
 @EntityScan(basePackages= {"com.waffa.Entity"})
 public class WafaaApplication {

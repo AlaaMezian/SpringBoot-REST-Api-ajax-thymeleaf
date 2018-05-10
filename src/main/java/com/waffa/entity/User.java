@@ -1,6 +1,7 @@
 package com.waffa.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,14 +15,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.waffa.constant.Status;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.waffa.constant.Status;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
+public class User implements Serializable {
 private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,10 +30,10 @@ private static final long serialVersionUID = 1L;
 	
 
 	@Column(name = "user_name")
-	private String userName;
+	private String username;
 	
-	@Column(name="enc_password")
-	private String encPassword;
+	@Column(name="password")
+	private String password;
 	
 	@Column(name = "user_email")
 	private String userEmail;
@@ -60,20 +59,24 @@ private static final long serialVersionUID = 1L;
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+
+
+	
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getEncPassword() {
-		return encPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setEncPassword(String encPassword) {
-		this.encPassword = encPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUserEmail() {
