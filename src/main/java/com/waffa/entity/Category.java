@@ -16,6 +16,19 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "category")
 public class Category implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "category_id")
+	private int categoryId;
+	
+	@Column(name = "category_name")
+	private String categoryName;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "added_date")
+	private Date addedDate;
+
 		
 	public int getCategoryId() {
 		return categoryId;
@@ -43,16 +56,5 @@ public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "category_id")
-	private int categoryId;
-	
-	@Column(name = "category_name")
-	private String categoryName;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "added_date")
-	private Date addedDate;
 
 }

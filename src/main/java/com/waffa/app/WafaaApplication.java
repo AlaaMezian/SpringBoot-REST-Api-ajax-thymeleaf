@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.waffa.controller", "com.waffa.service", "com.waffa.config","com.waffa.security"})
 @EnableJpaRepositories("com.waffa.respository")
-@EntityScan(basePackages= {"com.waffa.Entity"})
+@EntityScan(basePackages= {"com.waffa.entity"})
 public class WafaaApplication {
 
 	public static void main(String[] args) {

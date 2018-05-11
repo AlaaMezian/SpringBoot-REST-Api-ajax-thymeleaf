@@ -1,0 +1,7 @@
+---
+applications:
+  - name: wafaa
+    buildpack: java_buildpack
+    path: target/wafaa-0.0.1-SNAPSHOT.jar
+    services:
+      - app
