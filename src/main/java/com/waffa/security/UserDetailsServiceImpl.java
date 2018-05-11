@@ -30,8 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	            throw new UsernameNotFoundException(username);
 	        }
 		 else  {
-//			 user.getUserName(), user.getPassword()
-			 logger.info("i reached this line some how 4444444444444");
 				AuthenticatedUser LoggedinUser = new AuthenticatedUser(user.getUsername(), user.getPassword());
 				LoggedinUser.setUser(user);
 				return LoggedinUser;

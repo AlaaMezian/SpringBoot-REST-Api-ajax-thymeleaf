@@ -9,8 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>wafaa</name>
-	<description>project for saloon</description>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

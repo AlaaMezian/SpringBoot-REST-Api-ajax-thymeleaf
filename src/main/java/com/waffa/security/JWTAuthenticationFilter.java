@@ -11,6 +11,7 @@ import java.util.Date;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,9 +23,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.waffa.entity.User;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -41,6 +42,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
     	this.authenticationManager = authenticationManager;
 		setFilterProcessesUrl("/api/v1/login");
+//    	setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/v1/login"));
 
     }
 
@@ -48,14 +50,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-        	logger.info("this is the input stream " + req.getInputStream());
         	AuthenticatedUser creds = new ObjectMapper()
                     .readValue(req.getInputStream(), AuthenticatedUser.class);
         	
-        	logger.info("this is the username cred "+ creds.getUsername());
-        	logger.info("this is the password cred" + creds.getPassword());
-            logger.info("this is authentication token test" + authenticationManager.authenticate(new UsernamePasswordAuthenticationToken( creds.getUsername(),
-                            creds.getPassword(),  new ArrayList<>()))); 
         
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -73,6 +70,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
+    	
 
         String token = Jwts.builder()
                 .setSubject(((AuthenticatedUser) auth.getPrincipal()).getUsername())
@@ -80,5 +78,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        ServletOutputStream responseOutPutStream = res.getOutputStream();
+
+        responseOutPutStream.print("access-token: " +token);
     }
+
 }
