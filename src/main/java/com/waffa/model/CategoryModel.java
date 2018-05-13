@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class CategoryModel {
  
+	@NotNull
 	private int id;
 	@NotNull
 	private String categoryNameAr;

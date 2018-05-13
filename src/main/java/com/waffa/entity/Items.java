@@ -41,6 +41,78 @@ public class Items implements Serializable{
 	@Column(name = "item_description_ar")
 	private String itemDescriptionAr;
 	
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getItemTitleEn() {
+		return itemTitleEn;
+	}
+
+	public void setItemTitleEn(String itemTitleEn) {
+		this.itemTitleEn = itemTitleEn;
+	}
+
+	public String getItemTitleAr() {
+		return itemTitleAr;
+	}
+
+	public void setItemTitleAr(String itemTitleAr) {
+		this.itemTitleAr = itemTitleAr;
+	}
+
+	public String getItemDescriptionAr() {
+		return itemDescriptionAr;
+	}
+
+	public void setItemDescriptionAr(String itemDescriptionAr) {
+		this.itemDescriptionAr = itemDescriptionAr;
+	}
+
+	public String getItemDescriptionEn() {
+		return itemDescriptionEn;
+	}
+
+	public void setItemDescriptionEn(String itemDescriptionEn) {
+		this.itemDescriptionEn = itemDescriptionEn;
+	}
+
+	public String getItemImageUrl() {
+		return itemImageUrl;
+	}
+
+	public void setItemImageUrl(String itemImageUrl) {
+		this.itemImageUrl = itemImageUrl;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public Date getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Column(name = "item_description_en")
 	private String itemDescriptionEn;
 	
