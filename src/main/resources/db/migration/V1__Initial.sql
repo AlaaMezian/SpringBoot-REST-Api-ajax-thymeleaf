@@ -132,5 +132,3 @@ ADD COLUMN `user_name` VARCHAR(255) NULL AFTER `is_active`;
 
 ALTER TABLE `user` 
 CHANGE COLUMN `enc_password` `password` VARCHAR(255) NOT NULL ;
-
-

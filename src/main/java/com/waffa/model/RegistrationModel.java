@@ -1,6 +1,7 @@
 package com.waffa.model;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,17 +15,21 @@ public class RegistrationModel {
   
 
 	@NotNull
+	@NotBlank(message = "please enter a user name")
 	@Size(max = 50, message = "Maximum number of characters is 50")
 	private String userName;
 
 	@NotNull
+	@NotBlank(message = "please enter an email address")
 	@Email(message = "you entered invalid email, please rewrite your email")
 	private String userEmail;
 	
 	@NotNull
+	@NotBlank(message = "please enter a mobile phone number")
 	private String mobileNumber;
 	
 	@NotNull
+	@NotBlank(message = "please enter passsword")
 	private String password; 
 	
 	public String getUserName() {

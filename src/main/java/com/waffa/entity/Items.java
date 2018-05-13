@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,11 +32,20 @@ public class Items implements Serializable{
 	@Column(name = "item_id")
 	private int itemId;
 	
-	@Column(name = "item_title")
-	private String itemTitle;
+	@Column(name = "item_title_en")
+	private String itemTitleEn;
 	
-	@Column(name = "item_description")
-	private String itemDescription;
+	@Column(name = "item_title_ar")
+	private String itemTitleAr;
+	
+	@Column(name = "item_description_ar")
+	private String itemDescriptionAr;
+	
+	@Column(name = "item_description_en")
+	private String itemDescriptionEn;
+	
+	@Column(name = "item_image_url")
+	private String itemImageUrl;
 	
 	@Column(name = "price")
 	private String price;
@@ -45,9 +55,9 @@ public class Items implements Serializable{
 	@Column(name= "added_date")
 	private Date addedDate;
 	
-	@ManyToOne(cascade =CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="category_id")
-	private Category categoryId;
+	private Category category;
 	
 
 }

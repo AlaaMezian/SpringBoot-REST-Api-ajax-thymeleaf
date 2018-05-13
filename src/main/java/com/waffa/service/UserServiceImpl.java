@@ -1,22 +1,18 @@
 package com.waffa.service;
 
-import static java.util.Collections.emptyList;
-
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.waffa.constant.Status;
 import com.waffa.entity.User;
-import com.waffa.exception.code.RegistrationExceptionCode;
-import com.waffa.exceptions.RegistrationException;
+import com.waffa.exceptions.BadRequestException;
+import com.waffa.exceptions.InternalServerErrorException;
 import com.waffa.model.RegistrationModel;
 import com.waffa.respository.UserRepository;
 import com.waffa.utils.CoreValidations;
@@ -27,32 +23,22 @@ public class UserServiceImpl implements UserService {
 
 	private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-	
 	@Autowired
 	private UserRepository userRepository;
 
 	public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+		this.userRepository = userRepository;
 	}
-	
+
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-	    return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
 
-	@Override
-	public User findByUserName(String userName)  throws UsernameNotFoundException{
-		User applicationUser = userRepository.findByUsername(userName);
-		  if (applicationUser == null) {
-	            throw new UsernameNotFoundException(userName);
-	        }
-		    return new User();
-	}
-	
+
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByUserEmail(email);
@@ -61,37 +47,36 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(RegistrationModel registrationModel) {
 		try {
-		Date currentDate = CurrentDate.getCurrentDate();
-		User userEntity = new User();
+			Date currentDate = CurrentDate.getCurrentDate();
+			User userEntity = new User();
 
-		if (!CoreValidations.isAlphaNumeric(registrationModel.getUserName())) {
-			throw new RegistrationException(RegistrationExceptionCode.USER_NAME_NOT_VALID,
-					registrationModel.getUserName());
-		}
+			if (!CoreValidations.isAlphaNumeric(registrationModel.getUserName())) {
+				throw new BadRequestException("userName is not valid is should only contain letters and numbers");
+			}
 
-		// Email validation
-		if (!CoreValidations.isEmailValid(registrationModel.getUserEmail())) {
-			throw new RegistrationException(RegistrationExceptionCode.INVALID_EMAIL_EXCEPTION,
-					registrationModel.getUserEmail());
-		}
-		
-		  User userExists = userRepository.findByUserEmail(registrationModel.getUserEmail());
-         if(userExists != null)
-         {
-        	 throw new RegistrationException(RegistrationExceptionCode.EMAIL_ALREADY_REGISTRED,
-        			 registrationModel.getUserEmail());
-         }
+			// Email validation
+			if (!CoreValidations.isEmailValid(registrationModel.getUserEmail())) {
+				throw new BadRequestException("email is not valid please enter a valid email format ");
+			}
 
-		userEntity.setUsername(registrationModel.getUserName());
-		logger.info("the user name sent is "+ registrationModel.getUserName());
-		userEntity.setUserEmail(registrationModel.getUserEmail());
-		userEntity.setPassword(bCryptPasswordEncoder.encode(registrationModel.getPassword()));
-		userEntity.setIsActive(Status.Y);
-		userEntity.setMobileNumber(registrationModel.getMobileNumber());
-		userEntity.setRegDate(currentDate);
-		userRepository.save(userEntity);
-		}
-		catch (RegistrationException ex) {
+			User userExists = userRepository.findByUserEmail(registrationModel.getUserEmail());
+			if (userExists != null) {
+				throw new BadRequestException("user already signedUp,please SignUp with an other email");
+			}
+
+			User userFoundByUserName = userRepository.findByUsername(registrationModel.getUserName());
+			if (userFoundByUserName != null) {
+				throw new BadRequestException("the userName you are trying to signUp with is already taken");
+			}
+
+			userEntity.setUsername(registrationModel.getUserName());
+			userEntity.setUserEmail(registrationModel.getUserEmail());
+			userEntity.setPassword(bCryptPasswordEncoder.encode(registrationModel.getPassword()));
+			userEntity.setIsActive(Status.Y);
+			userEntity.setMobileNumber(registrationModel.getMobileNumber());
+			userEntity.setRegDate(currentDate);
+			userRepository.save(userEntity);
+		} catch (InternalServerErrorException ex) {
 			logger.error("---------------------------------------------------------------------------------------");
 			logger.error("Error when sign up user", ex);
 			logger.error("----------------------------------------------------------------------------------------");
@@ -100,10 +85,8 @@ public class UserServiceImpl implements UserService {
 			logger.error("----------------------------------------------------------------------------------------");
 			logger.error("Error when sign up user", e);
 			logger.error("----------------------------------------------------------------------------------------");
-			throw new RegistrationException(RegistrationExceptionCode.SIGNUP_EXCEPTION, "");
+			throw new InternalServerErrorException("some thing went wrong please try again later");
 		}
 	}
-
-	
 
 }

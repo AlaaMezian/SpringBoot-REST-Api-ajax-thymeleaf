@@ -26,6 +26,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.waffa.entity.User;
+import com.waffa.respository.UserRepository;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -38,11 +40,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	//this is a middle were to generate the token and give it back to the client
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired 
+	private UserRepository userRespoisitory;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UserRepository userRespoisitory) {
     	this.authenticationManager = authenticationManager;
-		setFilterProcessesUrl("/api/v1/login");
-//    	setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/v1/login"));
+    	this.userRespoisitory = userRespoisitory;
+//		setFilterProcessesUrl("/api/v1/login");
+    	setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/v1/login"));
 
     }
 
@@ -71,9 +77,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
     	
-
+        String userName =  ((AuthenticatedUser) auth.getPrincipal()).getUsername();
+        User user =userRespoisitory.findByUsername(userName);
         String token = Jwts.builder()
-                .setSubject(((AuthenticatedUser) auth.getPrincipal()).getUsername())
+                .setSubject("JwtToken")
+                .claim("userName", user.getUsername())
+                .claim("id" , user.getUserId())
+                .claim("userEmail", user.getUserEmail())
+                .claim("mobileNumber", user.getMobileNumber())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();

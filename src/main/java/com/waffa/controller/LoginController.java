@@ -33,7 +33,7 @@ public class LoginController {
 			@Valid @RequestBody LoginModel loginModel) {
 		
 		AuthenticatedUser user =customUserDetailsService.loadUserByUsername(loginModel.getUsername());
-        logger.info("everything went Fine until this line-------------------------------------------------");
+        logger.info("custom api end point reached -------------------------------------------------");
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success,user),
 				HttpStatus.OK);
 	}

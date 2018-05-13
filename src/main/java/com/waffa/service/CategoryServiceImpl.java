@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.waffa.entity.Category;
-import com.waffa.exception.code.CategoriesExceptionCode;
-import com.waffa.exceptions.CategoriesException;
+import com.waffa.exceptions.InternalServerErrorException;
 import com.waffa.model.CategoryModel;
 import com.waffa.respository.CategoryRepository;
 
@@ -21,20 +20,21 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<CategoryModel> getCategories()
 	{
 		List<Category> categoriesList = categoryRepository.findAll();
-		List<CategoryModel> categories= new ArrayList<CategoryModel	>();
-		int id = categoriesList.size();
+		List<CategoryModel> categories= new ArrayList<CategoryModel>();
 		try {
 			for (Category category : categoriesList) {
 
 				CategoryModel categoryModel = new CategoryModel();
-				categoryModel.setId(id--);
-				categoryModel.setCategoryName(category.getCategoryName());
+				categoryModel.setId(category.getCategoryId());
+				categoryModel.setCategoryNameAr(category.getCategoryNameAr());
+				categoryModel.setCategoryNameEng(category.getCategoryNameEn());
+				categoryModel.setImageUrl(category.getImageUrl());
 				categories.add(categoryModel);
 
 			}
 		} catch (Exception e) {
 
-			throw new CategoriesException(CategoriesExceptionCode.ERROR_RETRIVING_LIST, e.toString());
+			throw new InternalServerErrorException("something went wrong while fetching the categories, more details: "+ e.toString());
 		}
 		return categories;
 	}
