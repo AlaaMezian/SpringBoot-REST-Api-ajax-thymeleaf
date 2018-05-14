@@ -21,4 +21,5 @@ public class AppConstants {
     public static final String HEADER_STRING = "Authorization";
     public static final String SIGN_UP_URL = "/api/v1/signup";
     public static final String LOGIN_URL = "/api/v1/login";
+    public static final String FORGET_URL = "/api/v1/forgetpassword";
 }

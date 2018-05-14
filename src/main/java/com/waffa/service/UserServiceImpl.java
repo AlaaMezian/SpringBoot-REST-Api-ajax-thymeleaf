@@ -81,12 +81,7 @@ public class UserServiceImpl implements UserService {
 			logger.error("Error when sign up user", ex);
 			logger.error("----------------------------------------------------------------------------------------");
 			throw ex;
-		} catch (Exception e) {
-			logger.error("----------------------------------------------------------------------------------------");
-			logger.error("Error when sign up user", e);
-			logger.error("----------------------------------------------------------------------------------------");
-			throw new InternalServerErrorException("some thing went wrong please try again later");
-		}
+		} 
 	}
 
 }

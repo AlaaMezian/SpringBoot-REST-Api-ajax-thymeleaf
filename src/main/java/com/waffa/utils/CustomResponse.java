@@ -4,7 +4,7 @@ package com.waffa.utils;
 public class CustomResponse {
 	private final boolean success;
 
-	private final Object infoCode;
+	private final Object code;
 
 	private final Object data;
 
@@ -12,23 +12,23 @@ public class CustomResponse {
 		return success;
 	}
 
-	public Object getInfoCode() {
-		return infoCode;
+	public Object getCode() {
+		return code;
 	}
 
 	public Object getData() {
 		return data;
 	}
 
-	public CustomResponse(Object infoCode, Object data, boolean success) {
+	public CustomResponse(Object code, Object data, boolean success) {
 		this.success = success;
-		this.infoCode = infoCode.toString();
+		this.code = code.toString();
 		this.data = data;
 	}
 
-	public CustomResponse(Object infoCode, Object data) {
+	public CustomResponse(Object code, Object data) {
 		this.success = true;
-		this.infoCode = infoCode.toString();
+		this.code = code.toString();
 		this.data = data;
 	}
 
@@ -39,7 +39,7 @@ public class CustomResponse {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder("<");
-		builder.append(this.infoCode.toString());
+		builder.append(this.code.toString());
 		builder.append(',');
 		builder.append(this.success);
 		builder.append(',');

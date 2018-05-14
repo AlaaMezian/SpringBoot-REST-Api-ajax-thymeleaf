@@ -41,6 +41,24 @@ public class Items implements Serializable{
 	@Column(name = "item_description_ar")
 	private String itemDescriptionAr;
 	
+	@Column(name = "item_description_en")
+	private String itemDescriptionEn;
+	
+	@Column(name = "item_image_url")
+	private String itemImageUrl;
+	
+	@Column(name = "price")
+	private String price;
+	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name= "added_date")
+	private Date addedDate;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="category_id")
+	private Category category;
+	
 	public int getItemId() {
 		return itemId;
 	}
@@ -112,24 +130,6 @@ public class Items implements Serializable{
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
-	@Column(name = "item_description_en")
-	private String itemDescriptionEn;
-	
-	@Column(name = "item_image_url")
-	private String itemImageUrl;
-	
-	@Column(name = "price")
-	private String price;
-	
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name= "added_date")
-	private Date addedDate;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="category_id")
-	private Category category;
 	
 
 }

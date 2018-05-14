@@ -10,5 +10,5 @@ import com.waffa.entity.Items;
 @Repository("itemRepository")
 public interface ItemsRepository extends JpaRepository<Items, Integer>{
 
-	public List<Items> findAllByCategoryId(int categoryId);
+	public List<Items> findAllByCategory(int categoryId);
 }

@@ -19,7 +19,7 @@ public class ItemsServiceImp implements ItemsService{
 	
 	
 	public List<ItemModel> getAllRelatedItems(int categoryId){
-		List<Items> list = itemRepository.findAllByCategoryId(categoryId);
+		List<Items> list = itemRepository.findAllByCategory(categoryId);
 		List<ItemModel> mdlList = new ArrayList<ItemModel>();
 		try {
 			for(Items item :list) {

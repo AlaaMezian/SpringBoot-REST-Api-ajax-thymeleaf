@@ -37,7 +37,7 @@ public class Category implements Serializable {
 	@Column(name = "added_date")
 	private Date addedDate;
 
-	@OneToMany(mappedBy = "category_id")
+	@OneToMany(mappedBy = "category")
 	private List<Items> items;
 
 	public int getCategoryId() {

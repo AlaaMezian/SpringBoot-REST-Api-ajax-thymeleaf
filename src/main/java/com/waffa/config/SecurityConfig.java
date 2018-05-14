@@ -2,6 +2,7 @@ package com.waffa.config;
 
 import static com.waffa.utils.AppConstants.LOGIN_URL;
 import static com.waffa.utils.AppConstants.SIGN_UP_URL;
+import static com.waffa.utils.AppConstants.FORGET_URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-				.antMatchers(HttpMethod.POST, LOGIN_URL).permitAll().anyRequest().authenticated().and()
+				.antMatchers(HttpMethod.POST, LOGIN_URL).permitAll().antMatchers(HttpMethod.POST, FORGET_URL).permitAll().anyRequest().authenticated().and()
 				.addFilterBefore(new CORSFilter(),ChannelProcessingFilter.class)
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(),userRepository))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()))
