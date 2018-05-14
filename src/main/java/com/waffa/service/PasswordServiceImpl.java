@@ -26,7 +26,6 @@ public class PasswordServiceImpl implements PasswordService{
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	
 
 	@Override
@@ -43,7 +42,7 @@ public class PasswordServiceImpl implements PasswordService{
 			throw new BadRequestException("please enter your valid old password");
 		}
 		
-		user.setPassword(changeMdl.getNewPassword());
+		user.setPassword(passwordEncoder.encode(changeMdl.getNewPassword()));
 		userRepo.save(user);
 
 	}
@@ -64,7 +63,7 @@ public class PasswordServiceImpl implements PasswordService{
 		throw new ConflictException("you entered your old password please re-enter password using new one ");	
 		}
 		
-		user.setPassword(forgetPssMdl.getNewPassword());
+		user.setPassword(passwordEncoder.encode(forgetPssMdl.getNewPassword()));
 		
 		userRepo.save(user);
 		
