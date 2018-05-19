@@ -40,7 +40,7 @@ public class PasswordController {
 	}
 	
 	 
-	@RequestMapping(value="/forgetpassword",method = RequestMethod.PUT)
+	@RequestMapping(value="/forgetpassword",method = RequestMethod.POST)
 	public ResponseEntity<CustomResponse> forgetPass(@RequestParam String email,
 			@Valid @RequestBody ForgetPasswordModel forgetPassModel)
 	{

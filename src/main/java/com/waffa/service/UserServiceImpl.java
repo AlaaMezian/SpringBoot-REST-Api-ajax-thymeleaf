@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.waffa.constant.Status;
 import com.waffa.entity.User;
 import com.waffa.exceptions.BadRequestException;
+import com.waffa.exceptions.ForbiddenException;
 import com.waffa.exceptions.InternalServerErrorException;
 import com.waffa.model.RegistrationModel;
 import com.waffa.respository.UserRepository;
@@ -54,6 +55,9 @@ public class UserServiceImpl implements UserService {
 				throw new BadRequestException("userName is not valid is should only contain letters and numbers");
 			}
 
+			//validation of phone number todo 
+			CoreValidations.validatePhoneNumber(registrationModel.getMobileNumber());
+			
 			// Email validation
 			if (!CoreValidations.isEmailValid(registrationModel.getUserEmail())) {
 				throw new BadRequestException("email is not valid please enter a valid email format ");
@@ -61,12 +65,12 @@ public class UserServiceImpl implements UserService {
 
 			User userExists = userRepository.findByUserEmail(registrationModel.getUserEmail());
 			if (userExists != null) {
-				throw new BadRequestException("user already signedUp,please SignUp with an other email");
+				throw new ForbiddenException("user already signedUp,please SignUp with an other email");
 			}
 
 			User userFoundByUserName = userRepository.findByUsername(registrationModel.getUserName());
 			if (userFoundByUserName != null) {
-				throw new BadRequestException("the userName you are trying to signUp with is already taken");
+				throw new ForbiddenException("the userName you are trying to signUp with is already taken");
 			}
 
 			userEntity.setUsername(registrationModel.getUserName());
@@ -74,7 +78,6 @@ public class UserServiceImpl implements UserService {
 			userEntity.setPassword(bCryptPasswordEncoder.encode(registrationModel.getPassword()));
 			userEntity.setIsActive(Status.Y);
 			userEntity.setMobileNumber(registrationModel.getMobileNumber());
-			userEntity.setRegDate(currentDate);
 			userRepository.save(userEntity);
 		} catch (InternalServerErrorException ex) {
 			logger.error("---------------------------------------------------------------------------------------");

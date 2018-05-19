@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.waffa.controller", "com.waffa.service", "com.waffa.config","com.waffa.security"})
+@ComponentScan(basePackages = {"com.waffa.controller", "com.waffa.service", "com.waffa.config","com.waffa.security","com.waffa.mail"})
 @EnableJpaRepositories("com.waffa.respository")
 @EntityScan(basePackages= {"com.waffa.entity"})
 public class WafaaApplication {

@@ -7,4 +7,10 @@ import com.waffa.model.ItemModel;
 public interface ItemsService {
 
 	public List<ItemModel> getAllRelatedItems(int categoryId);
+	
+	public void createItem(ItemModel itmMdl);
+	
+	public String deleteItem(ItemModel itmMdl);
+	
+	public List<ItemModel> getItems();
 }

@@ -27,7 +27,7 @@ public class AdminUser implements Serializable	{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "admin_user_id")
-	private int adminUserId;
+	private int id;
 	
 	@Column(name = "user_name")
 	private String userName;

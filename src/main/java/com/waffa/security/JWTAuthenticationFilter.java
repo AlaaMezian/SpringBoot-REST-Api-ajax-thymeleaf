@@ -82,7 +82,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = Jwts.builder()
                 .setSubject("JwtToken")
                 .claim("userName", user.getUsername())
-                .claim("id" , user.getUserId())
+                .claim("id" , user.getId())
                 .claim("userEmail", user.getUserEmail())
                 .claim("mobileNumber", user.getMobileNumber())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

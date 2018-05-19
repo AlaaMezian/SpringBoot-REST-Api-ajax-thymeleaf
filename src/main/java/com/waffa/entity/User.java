@@ -20,13 +20,13 @@ import com.waffa.constant.Status;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
+public class User extends BaseEntity implements Serializable {
 private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
-	private int userId;
+	@Column(name = "id")
+	private int id;
 	
 
 	@Column(name = "user_name")
@@ -42,26 +42,18 @@ private static final long serialVersionUID = 1L;
 	@Enumerated(EnumType.STRING)
 	private Status isActive;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "reg_date")
-	private Date regDate;
-	
-	@Column(name = "mobile_number")
+	@Column(name = "mobile_number",unique = true)
 	private String mobileNumber;
 
-	
-   
-	public int getUserId() {
-		return userId;
+
+	public int getId() {
+		
+		return id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-
-
-	
 
 	public String getUsername() {
 		return username;
@@ -93,14 +85,6 @@ private static final long serialVersionUID = 1L;
 
 	public void setIsActive(Status isActive) {
 		this.isActive = isActive;
-	}
-
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
 	}
 
 	public String getMobileNumber() {

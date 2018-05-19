@@ -4,12 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.waffa.exceptions.BadRequestException;
+
 public class CoreValidations {
 
 	private final static Logger logger = LoggerFactory.getLogger(CoreValidations.class);
 
 	static String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-
 
 	private static final String PASSWORD_PATTERN = "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@%+'!#$^?:,/\\\\(){}\\[\\]~_-])[a-zA-Z\\d@%+'!#$^?:,/\\\\(){}\\[\\]~_-]{8,20})$";
 
@@ -25,7 +28,17 @@ public class CoreValidations {
 		}
 
 	}
-
+   //arabic validation 
+	public static boolean isProbablyArabic(String s) {
+        for (int i = 0; i < s.length(); ) {
+            int c = s.codePointAt(i);
+            if (c >= 0x0600 && c <= 0x06E0)
+                return true;
+            i += Character.charCount(c);
+        }
+        return false;
+    }
+	
 	public static boolean containNumber(String password) {
 		return password.matches(".*\\d.*");
 	}
@@ -65,6 +78,43 @@ public class CoreValidations {
 			}
 
 		}
+	}
+
+	public static void validatePhoneNumber(String phoneNumber) {
+
+		if (phoneNumber.startsWith("0") || !phoneNumber.startsWith("+"))
+			throw new BadRequestException("the phone number is not valid");
+
+		boolean numeric = isNumeric(phoneNumber);
+		if (!numeric || phoneNumber.contains(".") || phoneNumber.contains(","))
+			throw new BadRequestException("the phone number is not valid");
+
+		PhoneNumber phone = null;
+		boolean isValidNumber = false;
+		boolean isJONumber = false;
+
+		PhoneNumberUtil pnUtil = PhoneNumberUtil.getInstance();
+		try {
+			
+			phone = pnUtil.parse(phoneNumber, "SA");
+			isValidNumber = pnUtil.isValidNumber(phone);
+			isJONumber = pnUtil.getRegionCodeForNumber(phone).equals("SA");
+		} catch (Exception e) {
+			throw new BadRequestException("the phone number is not valid");
+		}
+
+		if (!isJONumber || !isValidNumber)
+			throw new BadRequestException("the phone number is not valid");
+		else {
+
+			if (phoneNumber.length() > 15)
+				throw new BadRequestException("the phone number is not valid");
+		}
+	}
+
+	// only contains number
+	public static boolean isNumeric(String s) {
+		return s != null && s.matches("[-+]?\\d*\\.?\\d+");
 	}
 
 	/*

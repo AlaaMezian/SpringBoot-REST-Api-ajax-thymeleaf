@@ -3,10 +3,8 @@ package com.waffa.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,48 +21,45 @@ import lombok.Setter;
 @Table(name = "items")
 @Getter
 @Setter	
-public class Items implements Serializable{
+public class Items extends BaseEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "item_id")
-	private int itemId;
+	@Column(name = "id")
+	private int id;
 	
-	@Column(name = "item_title_en")
+	@Column(name = "item_title_en" ,nullable=false)
 	private String itemTitleEn;
 	
-	@Column(name = "item_title_ar")
+	@Column(name = "item_title_ar", nullable=false)
 	private String itemTitleAr;
 	
-	@Column(name = "item_description_ar")
+	@Column(name = "item_description_ar", nullable=false)
 	private String itemDescriptionAr;
 	
-	@Column(name = "item_description_en")
+	@Column(name = "item_description_en", nullable=false)
 	private String itemDescriptionEn;
 	
-	@Column(name = "item_image_url")
+	@Column(name = "item_image_url", nullable=false)
 	private String itemImageUrl;
 	
 	@Column(name = "price")
 	private String price;
 	
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name= "added_date")
-	private Date addedDate;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
 	
-	public int getItemId() {
-		return itemId;
+
+
+	public int getId() {
+		return id;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getItemTitleEn() {
@@ -115,13 +110,6 @@ public class Items implements Serializable{
 		this.price = price;
 	}
 
-	public Date getAddedDate() {
-		return addedDate;
-	}
-
-	public void setAddedDate(Date addedDate) {
-		this.addedDate = addedDate;
-	}
 
 	public Category getCategory() {
 		return category;

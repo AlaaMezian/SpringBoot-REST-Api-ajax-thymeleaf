@@ -22,4 +22,16 @@ public class AppConstants {
     public static final String SIGN_UP_URL = "/api/v1/signup";
     public static final String LOGIN_URL = "/api/v1/login";
     public static final String FORGET_URL = "/api/v1/forgetpassword";
+    
+	public static final String VALUE_N = "N";
+	public static final String VALUE_Y = "Y";
+	
+
+	public static final String BLANK = "";
+	public static final String COLON = " : ";
+	public static final String DASH = " - ";
+	public static final String KEY_TXNID = "TXNID";
+	public static final String XPATH_TXNID = "//transcationId";
+	public static final String ENTRY = "Entry";
+	public static final String EXIT = "Exit";
 }

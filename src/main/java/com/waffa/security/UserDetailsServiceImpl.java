@@ -27,11 +27,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public AuthenticatedUser loadUserByUsername(String username) throws UsernameNotFoundException {
          User user = userRepository.findByUsername(username);
- 		logger.info("what is the user object :"+ user);
+         //or phone number
 		 if (user == null) {
-//	            throw new UsernameNotFoundException("username " + username
-//	                    + " not found");
-				throw new NotFoundException("User Not Found");
+	            throw new UsernameNotFoundException("username " + username
+	                    + " not found");
+//				throw new NotFoundException("User Not Found");
 
 	        }
 		 else  {

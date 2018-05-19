@@ -55,6 +55,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 			  request.getDescription(false));
 	  return new ResponseEntity<>(exceptionResponse, HttpStatus.CONFLICT);
   }
-
+  @ExceptionHandler(ForbiddenException.class)
+  public final ResponseEntity<ExceptionResponse> handleForbiddenException(ForbiddenException ex,WebRequest request){
+	  ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
+			  request.getDescription(false));
+	  return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
+  }
 
 }

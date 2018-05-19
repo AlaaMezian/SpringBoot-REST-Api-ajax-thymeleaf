@@ -9,19 +9,22 @@ public class ItemModel {
 
 	
 	private int itemId;
-	@NotNull
 	private String itemDescriptionEn;
-	@NotNull
 	private String itemDescriptionAr;
-	@NotNull
 	private String itemTitleEn;
-	@NotNull
 	private String itemTitleAr;
-	@NotNull
 	private String price; 
-	@NotNull
 	private String itemImageUrl;
+	private int categoryId;
 	
+	
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
 	public int getItemId() {
 		return itemId;
 	}
