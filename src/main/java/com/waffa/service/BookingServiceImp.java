@@ -1,5 +1,6 @@
 package com.waffa.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.waffa.constant.Status;
 import com.waffa.entity.Booking;
 import com.waffa.entity.User;
+import com.waffa.exceptions.BadRequestException;
 import com.waffa.exceptions.InternalServerErrorException;
 import com.waffa.model.BookingModel;
 import com.waffa.respository.BookingRepository;
@@ -43,7 +45,7 @@ public class BookingServiceImp implements BookingService {
 				bookingMdl.setBookingStartTime(book.getStartTime());
 				bookingMdl.setBookingEndTime(book.getEndTime());
 				bookingMdl.setBookingStartDate(
-			    DateUtil.convertDatetoString(book.getStartDate(), AppConstants.DATE_FORMAT_DDMMYYYY));
+						DateUtil.convertDatetoString(book.getStartDate(), AppConstants.DATE_FORMAT_DDMMYYYY));
 				bookingModelList.add(bookingMdl);
 			}
 
@@ -51,14 +53,6 @@ public class BookingServiceImp implements BookingService {
 		} catch (Exception e) {
 			throw new InternalServerErrorException("error while fetching Data from data base ");
 		}
-	}
-
-	public boolean validEndDate(Date startDate, Date endDate) {
-		boolean before = endDate.before(startDate);
-		if (before) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override
@@ -109,11 +103,6 @@ public class BookingServiceImp implements BookingService {
 		return numberOfCancledBooking;
 	}
 
-	//To do time validation 
-	public boolean isTimeValid(String time,String time2)
-	{
-		return true;
-	}
 	@Override
 	public Booking BookNewAppoitment(BookingModel bookingMdl, int userId) {
 		User user = userRepository.findById(userId);
@@ -123,18 +112,35 @@ public class BookingServiceImp implements BookingService {
 		Appointment.setIsDone(Status.N);
 		Appointment.setIsPending(Status.Y);
 		Appointment.setStartDate(DateUtil.convertStringToDate(bookingMdl.getBookingStartDate()));
-		Appointment.setStartTime(bookingMdl.getBookingStartTime());
-		Appointment.setEndTime(bookingMdl.getBookingEndTime());
+		String startTime = bookingMdl.getBookingStartTime();
+		Appointment.setStartTime(startTime);
+		String endTime = bookingMdl.getBookingEndTime();
+		Appointment.setEndTime(endTime);
+
+		SimpleDateFormat format = new SimpleDateFormat("hh:mm a"); // if 24 hour format
+		try {
+			java.util.Date d1 = (java.util.Date) format.parse(startTime);
+			java.util.Date d2 = (java.util.Date) format.parse(endTime);
+			java.sql.Time firstTime = new java.sql.Time(d1.getTime());
+			java.sql.Time seconedTime = new java.sql.Time(d2.getTime());
+			if (seconedTime.before(firstTime)) {
+				throw new BadRequestException("Bad Request Error");
+
+			}
+		} catch (Exception e) {
+			throw new  BadRequestException("the time of the booking is not valid ,please check and try again later");
+		}
+
 		Appointment.setUser(user);
 		bookingRepository.saveAndFlush(Appointment);
 		return Appointment;
+
 	}
 
 	@Override
 	public List<BookingModel> getAllPendingAppointment() {
 		try {
 			List<Booking> bookingList = bookingRepository.findAllByIsPending(Status.Y);
-			
 
 			List<BookingModel> bookingModelList = new ArrayList<BookingModel>();
 			for (Booking book : bookingList) {
@@ -145,7 +151,7 @@ public class BookingServiceImp implements BookingService {
 				bookingMdl.setBookingStartTime(book.getStartTime());
 				bookingMdl.setBookingEndTime(book.getEndTime());
 				bookingMdl.setBookingStartDate(
-				DateUtil.convertDatetoString(book.getStartDate(), AppConstants.DATE_FORMAT_DDMMYYYY));
+						DateUtil.convertDatetoString(book.getStartDate(), AppConstants.DATE_FORMAT_DDMMYYYY));
 				bookingModelList.add(bookingMdl);
 			}
 
@@ -154,6 +160,5 @@ public class BookingServiceImp implements BookingService {
 			throw new InternalServerErrorException("error while fetching Data from data base ");
 		}
 	}
-
 
 }

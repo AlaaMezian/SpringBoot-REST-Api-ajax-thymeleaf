@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void createCategory(CategoryModel catMdl) {
 		try{
-		if(!CoreValidations.isProbablyArabic(catMdl.getCategoryNameAr()))
+		if(!CoreValidations.validArabic(catMdl.getCategoryNameAr()))
 		{
 			throw new BadRequestException("please enter valid arabic letters");
 		}

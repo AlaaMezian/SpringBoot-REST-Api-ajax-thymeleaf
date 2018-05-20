@@ -1,7 +1,7 @@
 package com.waffa.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Date;
+
 import org.springframework.util.StringUtils;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -10,11 +10,7 @@ import com.waffa.exceptions.BadRequestException;
 
 public class CoreValidations {
 
-	private final static Logger logger = LoggerFactory.getLogger(CoreValidations.class);
-
 	static String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-
-	private static final String PASSWORD_PATTERN = "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@%+'!#$^?:,/\\\\(){}\\[\\]~_-])[a-zA-Z\\d@%+'!#$^?:,/\\\\(){}\\[\\]~_-]{8,20})$";
 
 	/*
 	 * Method to validate email
@@ -28,8 +24,17 @@ public class CoreValidations {
 		}
 
 	}
+	//validate start date is before end date 
+	public boolean validateDate(Date startDate, Date endDate) {
+		boolean before = endDate.before(startDate);
+		if (before) {
+			return false;
+		}
+		return true;
+	}
+	
    //arabic validation 
-	public static boolean isProbablyArabic(String s) {
+	public static boolean validArabic(String s) {
         for (int i = 0; i < s.length(); ) {
             int c = s.codePointAt(i);
             if (c >= 0x0600 && c <= 0x06E0)

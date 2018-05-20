@@ -54,7 +54,7 @@ public class ItemsServiceImp implements ItemsService {
 	public void createItem(ItemModel itemMdl) {
 		Category category = categoryRepository.findOneCategoryById(itemMdl.getCategoryId());
 		try {
-			if(!CoreValidations.isProbablyArabic(itemMdl.getItemDescriptionAr()) || !CoreValidations.isProbablyArabic(itemMdl.getItemTitleAr()))
+			if(!CoreValidations.validArabic(itemMdl.getItemDescriptionAr()) || !CoreValidations.validArabic(itemMdl.getItemTitleAr()))
 			{
 				throw new BadRequestException("please enter valid arabic letters");
 			}
