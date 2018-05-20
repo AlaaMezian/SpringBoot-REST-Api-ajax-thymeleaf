@@ -17,7 +17,7 @@ public class HTMLMail extends AbstractMail {
                     "<body>" +
                         "<p>Hello Dear </p>" +
                         "<p> please consider the following as your new password" +
-                        "<p>This is <strong>your new password</strong> {{pass}}</p>" +
+                        "<p>This is <strong>your new password</strong> </p>" +
                     "</body>" +
                 "</html>";
     }

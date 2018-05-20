@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.waffa.model.ChangePasswordModel;
-import com.waffa.model.ForgetPasswordModel;
 import com.waffa.service.PasswordService;
 import com.waffa.success.code.CommonSuccessCode;
 import com.waffa.utils.CustomResponse;
@@ -41,10 +39,9 @@ public class PasswordController {
 	
 	 
 	@RequestMapping(value="/forgetpassword",method = RequestMethod.POST)
-	public ResponseEntity<CustomResponse> forgetPass(@RequestParam String email,
-			@Valid @RequestBody ForgetPasswordModel forgetPassModel)
+	public ResponseEntity<CustomResponse> forgetPass(@RequestParam String email)
 	{
-		passwordService.forgetPassowrd(email, forgetPassModel);
+		passwordService.forgetPassowrd(email);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success),
 				HttpStatus.OK);
 	}
