@@ -1,0 +1,1232 @@
+@charset "UTF-8";
+/*font family an font weight mixins*/
+/*font size an font weight mixins*/
+/*clear fix mixins*/
+/*Box sizeing mixins*/
+/*Center Block mixins*/
+/*Float mixins*/
+/*Display inline block mixins*/
+/*Text align block mixins*/
+/* Positional mixins */
+/* line 5, ../sass/style-main.scss */
+body, * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* line 6, ../sass/style-main.scss */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #2F4050;
+  color: #676a6c;
+}
+
+/* line 7, ../sass/style-main.scss */
+.fa {
+  vertical-align: middle;
+}
+
+/* line 8, ../sass/style-main.scss */
+.f16 {
+  font-size: 16px;
+}
+
+/* line 10, ../sass/style-main.scss */
+h4.f16 {
+  margin-bottom: 15px;
+}
+
+/* line 14, ../sass/style-main.scss */
+strong {
+  font-weight: 700;
+}
+
+/* line 17, ../sass/style-main.scss */
+.disabled {
+  opacity: 0.5;
+}
+
+/* line 20, ../sass/style-main.scss */
+.w90 {
+  width: 90%;
+  float: left;
+}
+
+/* line 24, ../sass/style-main.scss */
+.overlay {
+  width: 100%;
+  margin: auto;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* line 25, ../sass/style-main.scss */
+.pad-left {
+  padding-left: 20px !important;
+}
+
+/* line 28, ../sass/style-main.scss */
+.text-black {
+  color: #222;
+}
+
+/* line 32, ../sass/style-main.scss */
+.form-group .input-group {
+  margin-bottom: 0;
+}
+
+/* line 36, ../sass/style-main.scss */
+#countryCode {
+  display: none;
+}
+
+/* line 39, ../sass/style-main.scss */
+.tooltip {
+  z-index: 9999;
+}
+
+/*checkbox css*/
+/* line 43, ../sass/style-main.scss */
+.icheckbox_square-green,
+.iradio_square-green {
+  *display: inline;
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background: url("../images/green.png") no-repeat;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* line 57, ../sass/style-main.scss */
+.icheckbox_square-green {
+  background-position: 0 0;
+}
+
+/* line 61, ../sass/style-main.scss */
+.icheckbox_square-green.hover {
+  background-position: -22px 0;
+}
+
+/* line 65, ../sass/style-main.scss */
+.icheckbox_square-green.checked {
+  background-position: -44px 0;
+}
+
+/* line 69, ../sass/style-main.scss */
+.icheckbox_square-green.disabled {
+  background-position: -72px 0;
+  cursor: default;
+}
+
+/* line 74, ../sass/style-main.scss */
+.icheckbox_square-green.checked.disabled {
+  background-position: -96px 0;
+}
+
+/* line 78, ../sass/style-main.scss */
+.iradio_square-green {
+  background-position: -110px 0;
+}
+
+/* line 82, ../sass/style-main.scss */
+.iradio_square-green.hover {
+  background-position: -132px 0;
+}
+
+/* line 86, ../sass/style-main.scss */
+.iradio_square-green.checked {
+  background-position: -154px 0;
+}
+
+/* line 90, ../sass/style-main.scss */
+.iradio_square-green.disabled {
+  background-position: -176px 0;
+  cursor: default;
+}
+
+/* line 95, ../sass/style-main.scss */
+.iradio_square-green.checked.disabled {
+  background-position: -216px 0;
+}
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  /* line 101, ../sass/style-main.scss */
+  .icheckbox_square-green,
+  .iradio_square-green {
+    background-image: url("../images/green@2x.png");
+    -webkit-background-size: 229px 22px;
+    background-size: 229px 22px;
+  }
+}
+/* Check box css end*/
+/*Bootstrap*/
+/* line 111, ../sass/style-main.scss */
+.popover {
+  width: 100%;
+}
+/* line 112, ../sass/style-main.scss */
+.popover .popover-title {
+  background: none;
+  padding: 10px;
+  float: left;
+  width: 100%;
+}
+/* line 117, ../sass/style-main.scss */
+.popover .popover-title .radio-content {
+  padding: 0;
+}
+/* line 120, ../sass/style-main.scss */
+.popover .popover-title h5 {
+  padding: 0;
+  top: 0;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+/* line 123, ../sass/style-main.scss */
+.popover .popover-title .dis-countries {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+/* line 127, ../sass/style-main.scss */
+.popover .popover-title .continental {
+  float: left;
+  padding: 0 10px 0 0;
+  width: 30%;
+}
+/* line 132, ../sass/style-main.scss */
+.popover .popover-title .sub-continental {
+  float: right;
+  width: 70%;
+}
+/* line 135, ../sass/style-main.scss */
+.popover .popover-title .sub-continental ul {
+  width: 100%;
+  float: left;
+}
+/* line 138, ../sass/style-main.scss */
+.popover .popover-title .sub-continental li {
+  width: 100%;
+  float: left;
+  margin-bottom: 5px;
+}
+
+/* line 145, ../sass/style-main.scss */
+.navbar {
+  min-height: 60px;
+}
+
+/* line 146, ../sass/style-main.scss */
+.input-group {
+  margin-bottom: 15px;
+}
+
+/*Bootstrap End */
+/*style.css changes*/
+/* line 157, ../sass/style-main.scss */
+body.mini-navbar .navbar-static-side {
+  width: 4%;
+}
+
+/* line 182, ../sass/style-main.scss */
+body.mini-navbar:not(.fixed-sidebar):not(.canvas-menu) .nav li:hover > .nav-second-level {
+  min-width: 250px;
+}
+/* line 191, ../sass/style-main.scss */
+body.mini-navbar .nav li:focus > .nav-second-level {
+  min-width: 250px;
+}
+
+/* line 206, ../sass/style-main.scss */
+.ibox-content {
+  display: inline-block;
+  width: 100%;
+}
+
+/*style.css changes end*/
+/*common*/
+/* line 213, ../sass/style-main.scss */
+h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* line 220, ../sass/style-main.scss */
+ul, li {
+  list-style: none;
+}
+
+/* line 225, ../sass/style-main.scss */
+body.mini-navbar .content-wrapper {
+  margin-left: 4%;
+  width: 96%;
+}
+
+/* line 229, ../sass/style-main.scss */
+option {
+  padding: 5px;
+}
+
+/* line 232, ../sass/style-main.scss */
+.heading {
+  width: 100%;
+  float: left;
+  margin: 10px 0 15px 0;
+}
+
+/* line 236, ../sass/style-main.scss */
+.tabs-container {
+  margin-top: 20px;
+}
+
+/* line 240, ../sass/style-main.scss */
+.horizontal-line {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 241, ../sass/style-main.scss */
+.content-wrapper {
+  margin-left: 16%;
+  background: #ffffff;
+  min-height: 900px;
+  float: left;
+  width: 84%;
+  transition: all 0.4s ease 0s;
+  -webkit-transition: all 0.4s ease 0s;
+}
+
+/* line 252, ../sass/style-main.scss */
+.table-responsive .table td {
+  background: none;
+}
+
+/* line 256, ../sass/style-main.scss */
+.content-wrapper a, .modal a {
+  color: #676a6c;
+}
+/* line 258, ../sass/style-main.scss */
+.content-wrapper a:hover, .modal a:hover {
+  color: #1ab394;
+}
+
+/* line 264, ../sass/style-main.scss */
+.navbar-header a {
+  color: #ffffff;
+}
+/* line 266, ../sass/style-main.scss */
+.navbar-header a:hover {
+  color: #ffffff;
+}
+
+/* line 274, ../sass/style-main.scss */
+td a .fa, th a .fa {
+  font-size: 22px;
+}
+
+/* line 281, ../sass/style-main.scss */
+td .fa, th .fa {
+  font-size: 22px;
+}
+
+/* line 288, ../sass/style-main.scss */
+.table a {
+  text-decoration: underline;
+}
+
+/* line 292, ../sass/style-main.scss */
+.btn-holder {
+  width: 100%;
+  float: left;
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* line 297, ../sass/style-main.scss */
+.excel, .pdf {
+  color: #676a6c;
+  font-size: 19px;
+  margin-left: 5px;
+}
+
+/* line 302, ../sass/style-main.scss */
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+/* line 306, ../sass/style-main.scss */
+label {
+  vertical-align: middle;
+  padding: 5px 0;
+  margin: 0;
+}
+
+/* line 311, ../sass/style-main.scss */
+.none {
+  display: none !important;
+}
+
+/* line 314, ../sass/style-main.scss */
+.modal-dialog {
+  width: 800px;
+}
+
+/* line 318, ../sass/style-main.scss */
+.excel:hover, .pdf:hover, .pagination li a:hover {
+  color: #1ab394;
+}
+
+/* line 324, ../sass/style-main.scss */
+.uploadID .navbar-top-links li:last-child {
+  margin-right: 0;
+}
+
+/* line 330, ../sass/style-main.scss */
+.dropzone {
+  min-height: 80px;
+  padding: 0 20px;
+}
+
+/* line 334, ../sass/style-main.scss */
+.dis-table {
+  display: table;
+}
+
+/* line 337, ../sass/style-main.scss */
+.table-cell {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+/* line 340, ../sass/style-main.scss */
+.i-checks {
+  float: left;
+  margin-right: 10px;
+}
+
+/*table css*/
+/* line 349, ../sass/style-main.scss */
+.pending-tt .table td {
+  background: #f2f2f2;
+}
+
+/* line 356, ../sass/style-main.scss */
+.pending-tt .white td {
+  background: #ffffff;
+}
+
+/* line 363, ../sass/style-main.scss */
+.pending-tt td:first-child, .pend-subs-tt td:first-child {
+  text-align: center;
+}
+
+/* line 371, ../sass/style-main.scss */
+.pending-tt th:first-child .fa, .pend-subs-tt th:first-child .fa {
+  text-align: center;
+  width: 100%;
+}
+
+/* line 380, ../sass/style-main.scss */
+.table td a {
+  display: inline-block;
+}
+/* line 383, ../sass/style-main.scss */
+.table td a:last-child {
+  margin-right: 0;
+}
+
+/* line 389, ../sass/style-main.scss */
+.upload-table {
+  width: 100%;
+  float: left;
+}
+
+/* line 393, ../sass/style-main.scss */
+.pending, .decline, .approve {
+  background: url("../images/sprite.png") no-repeat 0 0;
+  vertical-align: middle;
+}
+/* line 396, ../sass/style-main.scss */
+.pending span, .decline span, .approve span {
+  display: block;
+  float: left;
+  height: 25px;
+  width: 25px;
+}
+
+/* line 404, ../sass/style-main.scss */
+.pending {
+  width: 25px;
+  height: 25px;
+}
+/* line 406, ../sass/style-main.scss */
+.pending:hover, .pending.active {
+  background-position: 0 -24px;
+}
+
+/* line 412, ../sass/style-main.scss */
+.decline {
+  width: 20px;
+  height: 23px;
+  background-position: -33px -1px;
+}
+/* line 416, ../sass/style-main.scss */
+.decline:hover, .decline.active {
+  background-position: -33px -25px;
+}
+
+/* line 423, ../sass/style-main.scss */
+.approve {
+  width: 20px;
+  height: 23px;
+  background-position: -61px -1px;
+  margin-right: 0;
+}
+/* line 427, ../sass/style-main.scss */
+.approve:hover, .approve.active {
+  background-position: -61px -25px;
+  margin-right: 0;
+}
+
+/* line 433, ../sass/style-main.scss */
+.table-footer {
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
+}
+
+/* line 439, ../sass/style-main.scss */
+.table-footer .pagination {
+  float: right;
+  margin: 0;
+}
+
+/*table css End*/
+/*PopUp css*/
+/* line 449, ../sass/style-main.scss */
+.popups {
+  width: 100%;
+  float: left;
+}
+
+/* line 452, ../sass/style-main.scss */
+.user-info {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 456, ../sass/style-main.scss */
+.user-info ul {
+  width: 100%;
+  float: left;
+  margin-bottom: 5px;
+}
+
+/* line 462, ../sass/style-main.scss */
+.user-info li {
+  float: left;
+  padding-right: 10px;
+}
+
+/* line 468, ../sass/style-main.scss */
+.modal-body h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+/* line 474, ../sass/style-main.scss */
+.modal-body > div {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* line 480, ../sass/style-main.scss */
+#show-logs .row {
+  margin-bottom: 0;
+}
+
+/* line 485, ../sass/style-main.scss */
+.modal-body a {
+  text-decoration: underline;
+}
+
+/* line 489, ../sass/style-main.scss */
+.modal-body .uploaded-img-holder {
+  width: 100%;
+  float: left;
+}
+
+/*PopUp css end*/
+/*Account Information */
+/*Advance Search */
+/* line 497, ../sass/style-main.scss */
+.show-search-toggle {
+  width: 100%;
+  float: left;
+  display: none;
+}
+
+/* line 501, ../sass/style-main.scss */
+.advance-search, .show-history {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 506, ../sass/style-main.scss */
+.advance-search > a:after, .show-history > a:after {
+  bottom: 0;
+  content: "\f103";
+  font-family: fontawesome;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* line 517, ../sass/style-main.scss */
+.advance-search a, .show-history a {
+  text-decoration: underline;
+  position: relative;
+  padding-right: 10px;
+}
+
+/* line 526, ../sass/style-main.scss */
+.advance-search > a.active:after, .show-history > a.active:after {
+  content: "";
+}
+
+/* line 534, ../sass/style-main.scss */
+.advance-search a:hover, .show-history a:hover {
+  color: #1ab394;
+}
+
+/* line 541, ../sass/style-main.scss */
+.advance-search > a.active, .show-history > a.active {
+  padding-bottom: 15px;
+  display: inline-block;
+}
+
+/* line 547, ../sass/style-main.scss */
+.more-tag {
+  line-height: 37px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #676a6c;
+}
+
+/* line 553, ../sass/style-main.scss */
+.account-table table {
+  border: 1px solid #e7eaec;
+}
+
+/* line 559, ../sass/style-main.scss */
+.account-table table td {
+  padding: 5px 10px;
+  font-weight: 700;
+}
+
+/* line 568, ../sass/style-main.scss */
+.account-table table td:first-child {
+  border-right: 1px solid #e7eaec;
+}
+
+/* line 578, ../sass/style-main.scss */
+.account-table table table td:first-child {
+  border-right: none;
+}
+
+/* line 587, ../sass/style-main.scss */
+.account-table table table {
+  border: none;
+}
+
+/* line 595, ../sass/style-main.scss */
+.account-table tr td:last-child {
+  text-align: right;
+}
+
+/* line 605, ../sass/style-main.scss */
+.account-table tr tr td:last-child {
+  text-align: left;
+}
+
+/* line 614, ../sass/style-main.scss */
+.account-table td input, .account-table td select {
+  font-weight: normal;
+}
+
+/* line 620, ../sass/style-main.scss */
+.account-table .green {
+  color: #1ab394;
+}
+
+/* line 624, ../sass/style-main.scss */
+.green {
+  color: #1ab394;
+}
+
+/* line 627, ../sass/style-main.scss */
+.verify {
+  text-decoration: underline;
+}
+
+/* line 630, ../sass/style-main.scss */
+.font-normal {
+  font-weight: normal;
+}
+
+/* line 634, ../sass/style-main.scss */
+.kyc-acct-table .decline {
+  height: 23px;
+}
+
+/* line 639, ../sass/style-main.scss */
+.kyc-acct-table .btn-holder {
+  text-align: left;
+}
+
+/* line 645, ../sass/style-main.scss */
+.kyc-acct-table .btn-holder a {
+  text-decoration: underline;
+}
+
+/* line 652, ../sass/style-main.scss */
+.kyc-acct-table .text-right .btn-holder {
+  text-align: right;
+}
+
+/* line 658, ../sass/style-main.scss */
+.btn-holder button {
+  margin-right: 10px;
+}
+
+/* line 665, ../sass/style-main.scss */
+.btn-holder button:last-child {
+  margin-right: 0;
+}
+/* line 669, ../sass/style-main.scss */
+.btn-holder .show-date-link {
+  margin-bottom: 15px;
+  display: inline-block;
+  padding-right: 10px;
+  position: relative;
+}
+/* line 674, ../sass/style-main.scss */
+.btn-holder .show-date-link:after {
+  bottom: 0;
+  content: "\f103";
+  font-family: fontawesome;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 684, ../sass/style-main.scss */
+.btn-holder .show-date-link.active:after {
+  content: "";
+}
+
+/* line 691, ../sass/style-main.scss */
+.kyc-acct-table .add-document {
+  width: 100%;
+  float: left;
+  display: none;
+  padding: 0 20px 20px;
+  margin: 15px 0;
+  border: 1px solid #676a6c;
+}
+
+/* line 700, ../sass/style-main.scss */
+.add-document .dis-table {
+  height: 90px;
+  width: 100%;
+}
+
+/* line 707, ../sass/style-main.scss */
+.kyc-acct-table .add-document h4 {
+  background: #ffffff;
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 0 10px;
+  position: relative;
+  top: -10px;
+}
+
+/* line 717, ../sass/style-main.scss */
+.edit-doc .image-action {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+
+/* line 723, ../sass/style-main.scss */
+.image-action > p {
+  margin-bottom: 10px;
+}
+
+/* line 728, ../sass/style-main.scss */
+.image-action .decline {
+  background: url("../images/sprite.png") no-repeat -33px -1px;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  display: inline-block;
+}
+/* line 734, ../sass/style-main.scss */
+.image-action .decline:hover, .image-action .decline.active {
+  background-position: -33px -25px;
+}
+
+/* line 739, ../sass/style-main.scss */
+.links {
+  width: 100%;
+  float: left;
+  padding-bottom: 15px;
+}
+/* line 742, ../sass/style-main.scss */
+.links a {
+  text-decoration: underline;
+}
+
+/* line 746, ../sass/style-main.scss */
+.text-left {
+  text-align: left !important;
+}
+
+/* line 749, ../sass/style-main.scss */
+.text-right {
+  text-align: right !important;
+}
+
+/* line 753, ../sass/style-main.scss */
+a.underline {
+  text-decoration: underline;
+}
+
+/* line 757, ../sass/style-main.scss */
+.max-50 {
+  width: 100%;
+  max-width: 50%;
+}
+
+/* line 761, ../sass/style-main.scss */
+.table .max-50 {
+  display: inline-block;
+}
+
+/* line 765, ../sass/style-main.scss */
+.children-allowed {
+  width: 100%;
+  float: left;
+}
+/* line 767, ../sass/style-main.scss */
+.children-allowed label, .children-allowed a {
+  line-height: 38px;
+}
+
+/* line 771, ../sass/style-main.scss */
+.custom-flags {
+  width: 100%;
+  float: left;
+}
+/* line 773, ../sass/style-main.scss */
+.custom-flags .decline {
+  display: inline-block;
+  height: 33px;
+  line-height: 48px;
+  margin-left: 10px;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+  background: none;
+}
+/* line 775, ../sass/style-main.scss */
+.custom-flags .decline:after {
+  background: url("../images/sprite.png") no-repeat scroll -33px -1px;
+  bottom: 0;
+  content: "";
+  height: 20px;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  z-index: 9;
+}
+/* line 788, ../sass/style-main.scss */
+.custom-flags .decline:hover:after {
+  background-position: -33px -25px;
+}
+/* line 794, ../sass/style-main.scss */
+.custom-flags select {
+  width: 85%;
+  float: left;
+}
+
+/* line 798, ../sass/style-main.scss */
+.radio-content {
+  width: 100%;
+  float: left;
+  padding: 20px 0 0 0;
+}
+/* line 801, ../sass/style-main.scss */
+.radio-content .i-checks {
+  width: 100%;
+}
+/* line 803, ../sass/style-main.scss */
+.radio-content .i-checks label {
+  width: 10%;
+  float: left;
+  padding-right: 10px;
+  vertical-align: middle;
+  line-height: 32px;
+}
+/* line 807, ../sass/style-main.scss */
+.radio-content select.form-control {
+  width: 90%;
+  float: left;
+}
+/* line 810, ../sass/style-main.scss */
+.radio-content .image-action {
+  border: 1px solid #676a6c;
+  float: left;
+  padding: 0 10px;
+  width: 100%;
+}
+/* line 816, ../sass/style-main.scss */
+.radio-content .image-action li {
+  margin-bottom: 7px;
+}
+/* line 820, ../sass/style-main.scss */
+.radio-content h5 {
+  background: #ffffff;
+  display: inline-block;
+  margin: 0;
+  padding: 0 5px;
+  position: relative;
+  top: -10px;
+  width: auto;
+}
+
+/* line 831, ../sass/style-main.scss */
+.doc-type .dis-table {
+  height: 80px;
+}
+
+/* line 835, ../sass/style-main.scss */
+.all-contries-toggle, .all-types-toggle, .all-levels1-toggle, .all-levels2-toggle, .all-levels3-toggle, .all-levels4-toggle {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+  display: none;
+  padding-left: 30px;
+}
+/* line 840, ../sass/style-main.scss */
+.all-contries-toggle span, .all-types-toggle span, .all-levels1-toggle span, .all-levels2-toggle span, .all-levels3-toggle span, .all-levels4-toggle span {
+  vertical-align: middle;
+}
+/* line 841, ../sass/style-main.scss */
+.all-contries-toggle span .fa, .all-types-toggle span .fa, .all-levels1-toggle span .fa, .all-levels2-toggle span .fa, .all-levels3-toggle span .fa, .all-levels4-toggle span .fa {
+  cursor: pointer;
+}
+/* line 843, ../sass/style-main.scss */
+.all-contries-toggle span .fa:hover, .all-types-toggle span .fa:hover, .all-levels1-toggle span .fa:hover, .all-levels2-toggle span .fa:hover, .all-levels3-toggle span .fa:hover, .all-levels4-toggle span .fa:hover {
+  color: #1ab394;
+}
+/* line 848, ../sass/style-main.scss */
+.all-contries-toggle > div, .all-types-toggle > div, .all-levels1-toggle > div, .all-levels2-toggle > div, .all-levels3-toggle > div, .all-levels4-toggle > div {
+  display: inline-block;
+  margin-right: 15px;
+}
+/* line 851, ../sass/style-main.scss */
+.all-contries-toggle .dropdown, .all-types-toggle .dropdown, .all-levels1-toggle .dropdown, .all-levels2-toggle .dropdown, .all-levels3-toggle .dropdown, .all-levels4-toggle .dropdown {
+  margin-top: 0;
+}
+
+/* line 855, ../sass/style-main.scss */
+.all-contries, .all-types, .all-levels1, .all-levels2, .all-level3, .all-levels4 {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+/* line 858, ../sass/style-main.scss */
+.all-contries span, .all-types span, .all-levels1 span, .all-levels2 span, .all-level3 span, .all-levels4 span {
+  vertical-align: middle;
+}
+/* line 859, ../sass/style-main.scss */
+.all-contries span .fa, .all-types span .fa, .all-levels1 span .fa, .all-levels2 span .fa, .all-level3 span .fa, .all-levels4 span .fa {
+  cursor: pointer;
+}
+/* line 861, ../sass/style-main.scss */
+.all-contries span .fa:hover, .all-types span .fa:hover, .all-levels1 span .fa:hover, .all-levels2 span .fa:hover, .all-level3 span .fa:hover, .all-levels4 span .fa:hover {
+  color: #1ab394;
+}
+/* line 864, ../sass/style-main.scss */
+.all-contries span .fa.fa-minus-square-o, .all-types span .fa.fa-minus-square-o, .all-levels1 span .fa.fa-minus-square-o, .all-levels2 span .fa.fa-minus-square-o, .all-level3 span .fa.fa-minus-square-o, .all-levels4 span .fa.fa-minus-square-o {
+  color: #1ab394;
+}
+
+/* line 874, ../sass/style-main.scss */
+#request-ip-modal .all-contries-toggle > div, #request-ip-modal .all-types-toggle > div, #request-ip-modal .all-levels1-toggle > div, #request-ip-modal .all-levels2-toggle > div, #request-ip-modal .all-levels3-toggle > div, #request-ip-modal .all-levels4-toggle > div, #chooseCountry .all-contries-toggle > div, #chooseCountry .all-types-toggle > div, #chooseCountry .all-levels1-toggle > div, #chooseCountry .all-levels2-toggle > div, #chooseCountry .all-levels3-toggle > div, #chooseCountry .all-levels4-toggle > div, #allowedVendorTypes .all-contries-toggle > div, #allowedVendorTypes .all-types-toggle > div, #allowedVendorTypes .all-levels1-toggle > div, #allowedVendorTypes .all-levels2-toggle > div, #allowedVendorTypes .all-levels3-toggle > div, #allowedVendorTypes .all-levels4-toggle > div, #chooseLevel .all-contries-toggle > div, #chooseLevel .all-types-toggle > div, #chooseLevel .all-levels1-toggle > div, #chooseLevel .all-levels2-toggle > div, #chooseLevel .all-levels3-toggle > div, #chooseLevel .all-levels4-toggle > div {
+  width: 100%;
+}
+
+/* line 881, ../sass/style-main.scss */
+.category-checkbox {
+  width: 100%;
+  float: left;
+  margin-top: 10px;
+}
+
+/* line 885, ../sass/style-main.scss */
+.verification-method label {
+  margin-right: 15px;
+}
+
+/* line 888, ../sass/style-main.scss */
+.type-search {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+/* line 891, ../sass/style-main.scss */
+.type-search input {
+  padding-right: 30px;
+}
+/* line 894, ../sass/style-main.scss */
+.type-search .fa-search {
+  height: 17px;
+  margin: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 9px;
+  bottom: 0;
+  z-index: 2;
+}
+
+/* line 905, ../sass/style-main.scss */
+.dropdown ul {
+  width: 100%;
+  float: left;
+}
+/* line 907, ../sass/style-main.scss */
+.dropdown ul li {
+  margin-bottom: 5px;
+}
+/* line 909, ../sass/style-main.scss */
+.dropdown ul li:last-child {
+  margin-bottom: 0;
+}
+/* line 913, ../sass/style-main.scss */
+.dropdown ul li.sub-menu > a {
+  position: relative;
+  padding-left: 20px;
+}
+/* line 916, ../sass/style-main.scss */
+.dropdown ul li.sub-menu > a:before {
+  bottom: 0;
+  content: "\f196";
+  font-family: fontawesome;
+  margin: auto;
+  font-size: 17px;
+  position: absolute;
+  top: -2px;
+  bottom: 0;
+  left: -3px;
+}
+/* line 925, ../sass/style-main.scss */
+.dropdown ul li.sub-menu > a.active:before {
+  content: "";
+}
+/* line 932, ../sass/style-main.scss */
+.dropdown ul ul {
+  display: none;
+  padding-left: 25px;
+  margin: 10px 0;
+}
+/* line 936, ../sass/style-main.scss */
+.dropdown ul ul ul {
+  margin-top: 5px;
+}
+
+/* line 943, ../sass/style-main.scss */
+.conditions {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+}
+
+/* line 948, ../sass/style-main.scss */
+.icheckbox_square-green + span {
+  vertical-align: middle;
+}
+
+/*Advance Search End*/
+/*MAJD*/
+/* line 954, ../sass/style-main.scss */
+.add-vipuser {
+  display: none;
+  width: 100%;
+  float: left;
+}
+
+/* line 958, ../sass/style-main.scss */
+.allowed-user {
+  width: 100%;
+  float: left;
+}
+/* line 960, ../sass/style-main.scss */
+.allowed-user > div {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+/* line 964, ../sass/style-main.scss */
+.tab-content {
+  display: inline-block;
+  width: 100%;
+}
+/* line 966, ../sass/style-main.scss */
+.tab-content > div {
+  display: none;
+}
+
+/* line 971, ../sass/style-main.scss */
+.fees-header {
+  width: 100%;
+  float: left;
+}
+
+/* line 974, ../sass/style-main.scss */
+.T-C {
+  font-size: 12;
+}
+
+/* line 977, ../sass/style-main.scss */
+.grp-assign {
+  display: inline-block;
+  width: 100%;
+}
+/* line 979, ../sass/style-main.scss */
+.grp-assign label {
+  width: 100%;
+}
+/* line 982, ../sass/style-main.scss */
+.grp-assign .form-group {
+  float: left;
+  width: 100%;
+}
+/* line 985, ../sass/style-main.scss */
+.grp-assign .func-grp {
+  width: 100%;
+  float: left;
+}
+/* line 988, ../sass/style-main.scss */
+.grp-assign .user-permission {
+  width: 100%;
+  float: left;
+  position: relative;
+  padding: 10px;
+}
+/* line 991, ../sass/style-main.scss */
+.grp-assign .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* line 997, ../sass/style-main.scss */
+.targetAudience .all-contries-toggle > div {
+  width: 100%;
+}
+/* line 1001, ../sass/style-main.scss */
+.targetAudience .f16 {
+  margin-bottom: 10px;
+}
+
+/* line 1005, ../sass/style-main.scss */
+.sub-contries {
+  float: left;
+  padding-left: 50px;
+  width: 100%;
+}
+
+/*Account Information End*/
+@media (max-width: 1600px) {
+  /* line 1015, ../sass/style-main.scss */
+  .mini-navbar li.active .nav-second-level {
+    left: 60px;
+  }
+}
+@media (max-width: 1500px) {
+  /* line 1029, ../sass/style-main.scss */
+  body.mini-navbar .navbar-default .nav > li > a {
+    text-align: center;
+    padding: 14px 5px;
+  }
+
+  /* line 1041, ../sass/style-main.scss */
+  .mini-navbar li.active .nav-second-level {
+    left: 47px;
+  }
+
+  /* line 1047, ../sass/style-main.scss */
+  .w90 {
+    width: 85%;
+  }
+}
+@media (max-width: 800px) {
+  /* line 1052, ../sass/style-main.scss */
+  .modal-dialog {
+    width: 100%;
+  }
+
+  /* line 1056, ../sass/style-main.scss */
+  .modal-open .modal {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 770px) {
+  /* line 1064, ../sass/style-main.scss */
+  body.mini-navbar .navbar-static-side {
+    width: 6%;
+  }
+  /* line 1067, ../sass/style-main.scss */
+  body.mini-navbar .content-wrapper {
+    width: 94%;
+    margin-left: 6%;
+  }
+
+  /* line 1072, ../sass/style-main.scss */
+  .content-wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* line 1078, ../sass/style-main.scss */
+  .mini-navbar li.active .nav-second-level {
+    left: 34px;
+  }
+
+  /* line 1085, ../sass/style-main.scss */
+  .radio-content .image-action {
+    margin-top: 30px;
+  }
+}
+/* line 1091, ../sass/style-main.scss */
+.panel-title[data-toggle='collapse'] {
+  cursor: pointer;
+}

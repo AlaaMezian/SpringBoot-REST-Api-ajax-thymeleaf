@@ -1,0 +1,59 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+	<div class="sidebar-collapse">
+		<ul class="nav metismenu" id="side-menu">
+			<li class="nav-header">
+				<div class="dropdown profile-element">
+					<span> <img alt="image" class="img-circle"
+						th:src="@{/images/profile_small.jpg}" />
+					</span> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
+						class="clear"> <span class="block m-t-xs"> <strong
+								class="font-bold">waf'a beauty center</strong>
+						</span> <span class="text-muted text-xs block">System Manager <b
+								class="caret"></b></span>
+					</span>
+					</a>
+					<ul class="dropdown-menu animated fadeInRight m-t-xs">
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="contacts.html">Contacts</a></li>
+						<li><a href="mailbox.html">Mailbox</a></li>
+						<li class="divider"></li>
+						<li><a href="logout">Logout</a></li>
+					</ul>
+				</div>
+				<div class="logo-element">
+					<img src="images/cashu-logo.png" class="img-responsive" />
+				</div>
+			</li>
+
+			<li><a
+				href="javascript:void(0)"><i class="fa fa-tags"></i> <span
+					class="nav-label">Vendor Management</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><a
+						th:href="@{editProduct}">Categories</a></li>
+
+					<li><a
+						th:href="@{editProduct}">Items</a></li>
+
+
+
+
+					<li><a
+						th:href="@{editProduct}">Manage Booking</a></li>
+
+					<li><a th:href="@{editProduct}">Manage Users/a></li>
+					
+					<li><a href="javascript:void(0)"><i class="fa fa-envelope"></i>
+						<span class="nav-label">Images Slider</span></a></li>
+					
+			<li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>
+					<span class="nav-label">Marketing</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><a href="javascript:void(0)">Manage Campaign</a></li>
+					<li><a href="javascript:void(0)">Referral Program</a></li>
+				</ul></li>
+			
+			
+		</ul>
+	</div>
+</nav>

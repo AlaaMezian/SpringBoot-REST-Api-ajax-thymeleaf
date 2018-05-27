@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+	layout:decorator="master">
+
+
+
+<th:block layout:fragment="page-content">
+ <div class="container">
+
+  <h2 align="center">Hello <span th:utext="${userName}"></span>,Welcome to the Admin DashBoard</h2>
+  <div class="row text-center">
+              <p style="text-align:center" ><img src="../../static/images/GREEN-SMILE-00.png" width="30%" height="50%"
+                     th:src="@{/images/GREEN-SMILE-00.png}" /></p>
+  </div>     
+ </div>
+
+ </th:block>
+
+</html>
