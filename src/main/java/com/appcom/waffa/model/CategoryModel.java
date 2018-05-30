@@ -7,13 +7,13 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class CategoryModel {
  
-	@NotNull
-	private int id;
-	@NotNull
+	
+	private int categoryId;
+	
 	private String categoryNameAr;
-	@NotNull
+	
 	private String categoryNameEng;
-	@NotNull
+	
 	private String imageUrl;
 	
 	
@@ -36,10 +36,10 @@ public class CategoryModel {
 		this.imageUrl = imageUrl;
 	}
 	public int getId() {
-		return id;
+		return categoryId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.categoryId = id;
 	}
 
 	

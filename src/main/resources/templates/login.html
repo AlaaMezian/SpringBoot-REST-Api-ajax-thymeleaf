@@ -12,33 +12,36 @@
 
 <body>
  <div class="container">
-  <div class="alert alert-danger" role="alert" th:if="${param.error}">
+ <!--  <div class="alert alert-danger" role="alert" th:if="${param.error}">
    The email or password is incorrect!
-  </div>
+  </div> -->
         <form th:action="@{/login}" th:object="${adminUserModel}"  method="post">
           <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
     <label for="inputEmail" class="sr-only">Email</label>
 
-       <input  type="email" id="email" name="email" class="form-control" th:field="*{userEmail}" placeholder="Email"  required autofocus>
+       <input  type="email" id="userEmail" name="userEmail" class="form-control" th:field="*{userEmail}" placeholder="Email"  required autofocus>
          <div class="col-md-3">
                  <div class="form-control-feedback">
                          <span class="text-danger align-middle" th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}">
                          </span>
                  </div>
-             </div>
+             </div> 
+        
        <label for="inputPassword" class="sr-only">Password</label>
       
-       <input  type="password" id="password" name="password" th:field="*{pass}"class="form-control" placeholder="Password"  required>
-        <div class="col-md-3">
+       <input  type="password" id="pass" name="pass" th:field="*{pass}"class="form-control" placeholder="Password"  required>
+         <div class="col-md-3">
                  <div class="form-control-feedback">
                          <span class="text-danger align-middle" th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">
                          </span>
                  </div>
-             </div>
+             </div> 
+            
 
        <button class="btn btn-lg btn-success btn-block" type="submit" >Sign in</button>
        <div class="margin-top20 text-center"> have a nice day :)</div>
   </form>
     </div>
+    
 </body>
 </html>

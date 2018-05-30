@@ -1,23 +1,20 @@
 package com.appcom.waffa.utils;
 
-
 public class CustomResponse {
 	private final boolean success;
 
 	private final Object code;
 
+	private String message;
+
 	private final Object data;
 
-	public boolean isSuccess() {
-		return success;
-	}
-
-	public Object getCode() {
-		return code;
-	}
-
-	public Object getData() {
-		return data;
+	public CustomResponse(boolean success, Object code, String message, Object data) {
+		super();
+		this.success = success;
+		this.code = code;
+		this.message = message;
+		this.data = data;
 	}
 
 	public CustomResponse(Object code, Object data, boolean success) {
@@ -34,6 +31,26 @@ public class CustomResponse {
 
 	public CustomResponse(Object infoCode) {
 		this(infoCode, null);
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public Object getCode() {
+		return code;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Object getData() {
+		return data;
 	}
 
 	@Override

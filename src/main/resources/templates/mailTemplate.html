@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
-<span th:text="${message}"></span>
-                     <p>Hello Dear </p>
-                        <p> please consider the following as your new password</p>
-                        <p>This is <strong>your new password</strong> <div th:text ="${password}"></div></p>
+	<span th:text="${message}"></span>
+	<p>Hello Dear</p>
+	<p>please consider the following as your new password</p>
+	<div style="font-weight: bold" th:text="${password}"></div>
 </body>
 </html>

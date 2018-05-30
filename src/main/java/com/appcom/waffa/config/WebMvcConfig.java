@@ -4,6 +4,7 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 public class WebMvcConfig implements WebMvcConfigurer {
 
 
@@ -12,5 +13,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	     registry.addViewController("/login").setViewName("login");
 	     registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	 }
+
 }
 

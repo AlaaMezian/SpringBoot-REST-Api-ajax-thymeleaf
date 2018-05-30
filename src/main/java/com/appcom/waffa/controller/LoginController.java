@@ -3,6 +3,7 @@ package com.appcom.waffa.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.hamcrest.text.IsEmptyString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,28 +58,31 @@ public class LoginController {
 		model.setViewName("login");
 		return model;
 	}
-
+    
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginAdmin(@ModelAttribute("adminUserModel") AdminUserModel adminUserModel,
 			BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
-
+		ModelAndView modelAndView = new ModelAndView("login");
 		AdminUser admin = userService.findUserByEmail(adminUserModel.getUserEmail());
-
-		if (admin == null) {
-			bindingResult.rejectValue("userEmail", "error.user", "This email is not valid or not registered!");
+         
+		if ( admin == null) {
+		   admin = new AdminUser();
+			bindingResult.rejectValue("userEmail", "error.adminUserModel", "This email is not valid !");
 		}
 
 		if (!passwordEncoder.matches(adminUserModel.getPass(), admin.getPassword())) {
-			bindingResult.rejectValue("pass", "error.user", "worng password please try again!");
+			bindingResult.rejectValue("pass", "error.adminUserModel", "worng password please try again!");
 		}
-
+        
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("login");
+        return modelAndView;
+		}else {
+			ModelAndView modelAndViewAdmin =  new ModelAndView("redirect:/adminHome");
+			return modelAndViewAdmin;
 		}
-		modelAndView.setViewName("/adminHome");
-		return modelAndView;
 	}
+	
 
 	@RequestMapping(value = { "/access_denied" }, method = RequestMethod.GET)
 	public ModelAndView accessDenied() {
