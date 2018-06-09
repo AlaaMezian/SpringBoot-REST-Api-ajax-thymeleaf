@@ -96,24 +96,24 @@ public class CoreValidations {
 
 		PhoneNumber phone = null;
 		boolean isValidNumber = false;
-		boolean isJONumber = false;
+		boolean isSANumber = false;
 
 		PhoneNumberUtil pnUtil = PhoneNumberUtil.getInstance();
 		try {
 			
 			phone = pnUtil.parse(phoneNumber, "SA");
 			isValidNumber = pnUtil.isValidNumber(phone);
-			isJONumber = pnUtil.getRegionCodeForNumber(phone).equals("SA");
+			isSANumber = pnUtil.getRegionCodeForNumber(phone).equals("SA");
 		} catch (Exception e) {
-			throw new BadRequestException("the phone number is not valid");
+			throw new BadRequestException("the phone code is not valid");
 		}
 
-		if (!isJONumber || !isValidNumber)
+		if (!isSANumber || !isValidNumber)
 			throw new BadRequestException("the phone number is not valid");
 		else {
 
 			if (  phoneNumber.length() != 13 )
-				throw new BadRequestException("the phone number is not valid");
+				throw new BadRequestException("the phone number length is invalid");
 		}
 	}
 

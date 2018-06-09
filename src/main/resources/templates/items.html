@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
+	rel="stylesheet" />
+<link href="css/datatables.min.css" rel="stylesheets" />
+	
+</head>
+<div th:replace="fragments/header-css :: header-css"></div>
+
+
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/items.js"></script>
+
+	<div th:replace="fragments/leftnav :: leftnav"></div>
+	<div id="right-panel" class="right-panel">
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+
+				<div class="breadcrumbs">
+					<div class="col-sm-16">
+						<div class="page-title">
+							<h3>Items</h3>
+						</div>
+					</div>
+				</div>
+
+				<!-- 	<div class="ibox-content"> -->
+
+			</div>
+			<form th:object="${ItemModel}" id="ItemModel"
+				enctype="multipart/form-data" name="ItemModel" method="POST"
+				th:action="@{/items}">
+				<input id="itemId" type="hidden" th:field="*{itemId}" />
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Category</label> <select class="form-control m-b"
+							th:object="${categoryList}" id="categorySelect" name="categoryId">
+
+
+							<option value="0">Choose Category</option>
+							<option th:each="category : ${categoryList}"
+								th:value="${category.categoryid}" th:text="${category.categoryNameEng}"></option>
+
+						</select>
+						<p id="chooseCat" style="color: red;">please choose a valid
+							Category</p>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Item Name in English *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{itemTitleEn}" id="itemTitleEn"
+								class="form-control" placeholder="item name in english" />
+						</div>
+
+						<p id="requiredItemEn" style="color: red;">*this field is a
+							required field</p>
+						<p id="EnglishLettersOnlyItem" style="color: red;">*only
+							English letters,&amp;,- are allowed</p>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Item Name in Arabic *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{itemTitleAr}" id="itemTitleAr"
+								class="form-control" placeholder="item name in arabic" />
+						</div>
+						<p id="requiredItemAr" style="color: red;">*this field is a
+							required field</p>
+						<p id="onlyArabicItem" style="color: red;">*only arabic
+							letters are allowed</p>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Item Description in English *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{itemDescriptionEn}"
+								id="itemDescriptionEn" class="form-control"
+								placeholder="item Description in english" />
+						</div>
+						<p id="requiredItemDescEn" style="color: red;">*this field is
+							a required field</p>
+						<p id="onlyEngItemDesc" style="color: red;">*only arabic
+							letters are allowed</p>
+					</div>
+
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Item Description in Arabic *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{itemDescriptionAr}"
+								id="itemDescriptionAr" class="form-control"
+								placeholder="item Description in arabic" />
+						</div>
+						<p id="requiredItemDescAr" style="color: red;">*this field is
+							a required field</p>
+						<p id="onlyArItemDesc" style="color: red;">*only arabic
+							letters are allowed</p>
+					</div>
+
+
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>price *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{price}" id="price"
+								class="form-control" placeholder="item price" />
+						</div>
+						<p id="requiredPrice" style="color: red;">*this field is a
+							required field</p>
+					</div>
+
+
+
+
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-9 col-md-12 col-lg-12">
+							<label for="exampleInputFile">image Upload</label> <input
+								type="file" class="form-control-file" id="file" name="files"
+								aria-describedby="fileHelp"> <small id="fileHelp"
+								class="form-text text-muted" required='required'>please
+								choose image for the category to upload make sure that size
+								doesn't exceed 8 mb</small>
+							<p id="requiredImageField" style="color: red;">*this field is
+								a required field</p>
+						</div>
+						<!-- 						<input type="submit" value="Submit"  style="display: none;" /> -->
+					</div>
+
+
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="btn-holder text-left">
+							<button onclick="addItem(event);" id="itemAdd"
+								class="btn btn-success" type="submit">Add Item</button>
+
+							<!-- <button onclick="addCategory()" class="btn btn-success"
+								id="saveCategory" type="button">Save</button> -->
+						</div>
+					</div>
+
+
+
+				</div>
+				<div class="modal inmodal" id="response-delete" tabindex="-1"
+					role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content animated fadeIn">
+							<div class="modal-header">
+
+								<button type="button" class="close" data-dismiss="modal"
+									onclick="closeModal();">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<h3 id="DeleteResult" class="no-margins text-center"></h3>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									onclick="closeModal();">Ok</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--<input type="hidden" id="_csrf" th:content="${_csrf.token}" /> <input
+					type="hidden" id="_csrfParam" th:content="${_csrf.parameterName}" /> 
+				  {{ csrf_field() }} this is equal to the 2 input tags  -->
+
+			</form>
+
+
+
+
+
+
+
+			<div class="horizontal-line">
+				<hr />
+			</div>
+			<div id="itemsGrid">
+				<th:block th:include="/Partials/itemsPartials"></th:block>
+			</div>
+
+		</div>
+	</div>
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script> 
+	
+</body>
+</html>

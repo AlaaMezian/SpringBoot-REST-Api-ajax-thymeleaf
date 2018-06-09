@@ -28,7 +28,7 @@ public class PasswordController {
 	@Autowired
 	private PasswordService passwordService;
 	
-	@RequestMapping(value = "/user/{id}/changepassword", method = RequestMethod.PUT)
+	@RequestMapping(value = "/user/{id}/changepassword", method = RequestMethod.PUT,produces = "application/json")
 	public  ResponseEntity<CustomResponse> changePass(@PathVariable("id") int userId,
 			@Valid @RequestBody ChangePasswordModel changeModel) 
 	{
@@ -38,7 +38,7 @@ public class PasswordController {
 	}
 	
 	 
-	@RequestMapping(value="/forgetpassword",method = RequestMethod.POST)
+	@RequestMapping(value="/forgetpassword",method = RequestMethod.POST,produces = "application/json")
 	public ResponseEntity<CustomResponse> forgetPass(@RequestParam String email)
 	{
 		passwordService.forgetPassowrd(email);

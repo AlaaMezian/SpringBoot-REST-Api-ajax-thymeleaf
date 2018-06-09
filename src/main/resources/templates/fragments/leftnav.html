@@ -3,6 +3,7 @@
 
 	<aside id="left-panel" class="left-panel" th:fragment="leftnav">
 		<nav class="navbar navbar-expand-sm navbar-default">
+			<script src="js/main.js"></script>
 
 			<div class="navbar-header">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -22,32 +23,8 @@
 							class="menu-icon fa fa-dashboard"></i>Dashboard
 					</a></li>
 					<h3 class="menu-title">Manage</h3>
-					<!-- /.menu-title -->
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
+					<li><a href="#" class="dropdown-toggle"> <i
 							class="menu-icon fa fa-bell"></i>Notification
-					</a></li>
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-calendar"></i>Appointment
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-basic.html">Basic Form</a></li>
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-advanced.html">Advanced Form</a></li>
-						</ul></li>
-
-					<h3 class="menu-title">Create</h3>
-					<!-- /.menu-title -->
-
-					<li><a th:href="@{categories}" class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-tags"></i>Categories
-					</a></li>
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-list-ul"></i>Items
 					</a>
 						<ul class="sub-menu children dropdown-menu">
 							<li><i class="menu-icon fa fa-line-chart"></i><a
@@ -57,6 +34,28 @@
 							<li><i class="menu-icon fa fa-pie-chart"></i><a
 								href="charts-peity.html">Peity Chart</a></li>
 						</ul></li>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-calendar"></i>Appointment
+					</a>
+						<ul class="sub-menu children dropdown-menu">
+							<li><i class="menu-icon fa fa-th"></i><a
+								href="forms-basic.html">Basic Form</a></li>
+							<li><i class="menu-icon fa fa-th"></i><a
+								href="forms-advanced.html">Advanced Form</a></li>
+						</ul></li>
+					<li><a th:href="@{sliderImages}" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-list-ul"></i>deals
+					</a></li>
+
+					<h3 class="menu-title">Create</h3>
+					<!-- /.menu-title -->
+
+					<li><a th:href="@{categories}" class="dropdown-toggle">
+							<i class="menu-icon fa fa-tags"></i>Categories
+					</a></li>
+					<li><a th:href="@{items}" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-list-ul"></i>Items
+					</a></li>
 
 					<li>
 						<!-- <form th:action="@{/logout}" method="post">

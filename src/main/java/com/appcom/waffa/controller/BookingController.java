@@ -27,49 +27,49 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
-	@RequestMapping(value = "/user/{id}/appointment/active", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}/appointment/active", method = RequestMethod.GET  ,produces = "application/json")
 	public ResponseEntity<CustomResponse> getAllActiveAppointment(@PathVariable("id") int userId) {
 		List<BookingModel> appointmentList = bookingService.getAllActiveBookingPerUser(userId);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success, appointmentList),
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/user/{id}/NumberOfCancledBooking", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}/NumberOfCancledBooking", method = RequestMethod.GET ,produces = "application/json")
 	public ResponseEntity<CustomResponse> getAllCancledAppointmentCount(@PathVariable("id") int userId) {
 		int appointmentList = bookingService.numberOfCancledBookingPerUser(userId);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success, appointmentList),
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/user/{id}/appointment/done", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}/appointment/done", method = RequestMethod.GET  ,produces = "application/json")
 	public ResponseEntity<CustomResponse> getAllDoneAppointment(@PathVariable("id") int userId) {
 		List<BookingModel> appointmentList = bookingService.getAllDoneBooking(userId);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success, appointmentList),
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "user/{id}/appointment/cancel", method = RequestMethod.POST)
+	@RequestMapping(value = "user/{id}/appointment/cancel", method = RequestMethod.POST  ,produces = "application/json")
 	public ResponseEntity<CustomResponse> cancleBooking(@Valid @RequestBody BookingModel bookingMdl){
 		bookingService.cancleBooking(bookingMdl);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success , "message : " + "appointment cancled Successfully"),
 				HttpStatus.OK);	
 	}
 	
-	@RequestMapping(value = "user/{id}/appointment/book", method = RequestMethod.POST)
+	@RequestMapping(value = "user/{id}/appointment/book", method = RequestMethod.POST ,produces = "application/json")
 	public ResponseEntity<CustomResponse> bookAppointment(@Valid @RequestBody BookingModel bookingMdl ,@PathVariable("id") int userId){
 		Booking newAppointment = bookingService.BookNewAppoitment(bookingMdl,userId);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Created ,newAppointment ),
 				HttpStatus.OK);	
 	}
 	//for Admin and might convert it to return list only 
-	@RequestMapping(value = "booking/pending" , method = RequestMethod.GET)
+	@RequestMapping(value = "booking/pending" , method = RequestMethod.GET ,produces = "application/json")
 	public ResponseEntity<CustomResponse> getAllPendingBooking()
 	{
 		List<BookingModel> pendingAppointments = bookingService.getAllPendingAppointment();
 		return new ResponseEntity<CustomResponse> (new CustomResponse(CommonSuccessCode.Success ,pendingAppointments), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "appointment/availableTimes",method = RequestMethod.GET)
+	@RequestMapping(value = "appointment/availableTimes",method = RequestMethod.GET,produces = "application/json")
 	public ResponseEntity<CustomResponse> getAvailableTimes(@RequestParam("date") String date )
 	{
 		List<String> availableTimes = bookingService.getAllAvailableTimes(date);

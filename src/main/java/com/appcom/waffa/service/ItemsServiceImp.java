@@ -1,20 +1,18 @@
 package com.appcom.waffa.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.appcom.waffa.constant.Status;
 import com.appcom.waffa.entity.Category;
 import com.appcom.waffa.entity.Items;
-import com.appcom.waffa.exceptions.BadRequestException;
 import com.appcom.waffa.exceptions.InternalServerErrorException;
 import com.appcom.waffa.model.ItemModel;
 import com.appcom.waffa.respository.CategoryRepository;
 import com.appcom.waffa.respository.ItemsRepository;
-import com.appcom.waffa.utils.CoreValidations;
 
 @Service
 public class ItemsServiceImp implements ItemsService {
@@ -29,7 +27,7 @@ public class ItemsServiceImp implements ItemsService {
 	public List<ItemModel> getAllRelatedItems(int categoryId) {
 		Category cat = categoryRepository.findOneCategoryById(categoryId);
 
-		List<Items> list = itemRepository.findAllItemsByCategory(cat);
+		List<Items> list = itemRepository.findAllItemsByCategoryAndIsActive(cat,Status.Y);
 		List<ItemModel> mdlList = new ArrayList<ItemModel>();
 		try {
 			for (Items item : list) {
@@ -41,6 +39,7 @@ public class ItemsServiceImp implements ItemsService {
 				itemMdl.setItemTitleAr(item.getItemTitleAr());
 				itemMdl.setItemTitleEn(item.getItemTitleEn());
 				itemMdl.setPrice(item.getPrice());
+				
 				mdlList.add(itemMdl);
 			}
 
@@ -54,10 +53,10 @@ public class ItemsServiceImp implements ItemsService {
 	public void createItem(ItemModel itemMdl) {
 		Category category = categoryRepository.findOneCategoryById(itemMdl.getCategoryId());
 		try {
-			if(!CoreValidations.validArabic(itemMdl.getItemDescriptionAr()) || !CoreValidations.validArabic(itemMdl.getItemTitleAr()))
+		/*	if(!CoreValidations.validArabic(itemMdl.getItemDescriptionAr()) || !CoreValidations.validArabic(itemMdl.getItemTitleAr()))
 			{
 				throw new BadRequestException("please enter valid arabic letters");
-			}
+			}*/
 			Items items = new Items();
 			items.setItemDescriptionAr(itemMdl.getItemDescriptionAr());
 			items.setItemDescriptionEn(itemMdl.getItemDescriptionEn());
@@ -67,6 +66,8 @@ public class ItemsServiceImp implements ItemsService {
 			items.setItemImageUrl(itemMdl.getItemImageUrl());
 			items.setCategory(category);
 			items.setPrice(itemMdl.getPrice());
+			items.setIsActive(Status.Y);
+			itemRepository.save(items);
 
 		} catch (Exception e) {
 			throw new InternalServerErrorException(

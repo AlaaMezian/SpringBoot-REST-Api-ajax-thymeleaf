@@ -6,11 +6,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.appcom.waffa.constant.Status;
 
 @Entity
 @Table(name = "category")
@@ -27,9 +31,28 @@ public class Category extends BaseEntity implements Serializable {
 	@Column(name = "category_name_en", nullable=false)
 	private String categoryNameEn;
 	
-	@Column(name= "image_url", nullable=false)
+	@Column(name = "category_description_ar", nullable=false)
+	private String categoryDescriptionAr;
+	
+	@Column(name = "category_description_en", nullable=false)
+	private String categoryDescriptionEn;
+	
+	@Column(name= "image_url")
 	private String imageUrl;
+	
 
+	@Column(name = "is_active")
+	@Enumerated(EnumType.STRING)
+	private Status isActive;
+
+
+	public Status getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Status isActive) {
+		this.isActive = isActive;
+	}
 
 	@OneToMany
 //	@JoinColumn(name = "category_id")
@@ -38,6 +61,22 @@ public class Category extends BaseEntity implements Serializable {
 	
 	public int getId() {
 		return id;
+	}
+
+	public String getCategoryDescriptionAr() {
+		return categoryDescriptionAr;
+	}
+
+	public void setCategoryDescriptionAr(String categoryDescriptionAr) {
+		this.categoryDescriptionAr = categoryDescriptionAr;
+	}
+
+	public String getCategoryDescriptionEn() {
+		return categoryDescriptionEn;
+	}
+
+	public void setCategoryDescriptionEn(String categoryDescriptionEn) {
+		this.categoryDescriptionEn = categoryDescriptionEn;
 	}
 
 	public void setId(int id) {

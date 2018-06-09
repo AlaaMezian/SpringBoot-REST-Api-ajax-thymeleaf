@@ -2,8 +2,6 @@ package com.appcom.waffa.service;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.appcom.waffa.model.CategoryModel;
 
 public interface CategoryService {

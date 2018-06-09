@@ -3,7 +3,6 @@ package com.appcom.waffa.notification;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.scheduling.annotation.Async;

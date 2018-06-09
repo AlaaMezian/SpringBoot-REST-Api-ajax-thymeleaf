@@ -3,129 +3,196 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Categories</title>
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
+	rel="stylesheet" />
+<link href="css/datatables.min.css" rel="stylesheets" />
+
 </head>
 <div th:replace="fragments/header-css :: header-css"></div>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="js/categories.js"></script>
-	
-	
-	
+
 <body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/categories.js"></script>
+
 	<div th:replace="fragments/leftnav :: leftnav"></div>
 	<div id="right-panel" class="right-panel">
 		<div class="content mt-3">
 			<div class="animated fadeIn">
 
-				<div class="breadcrumbs" >
+				<div class="breadcrumbs">
 					<div class="col-sm-16">
-						<!-- <div class="page-header float-left"> -->
-							<div class="page-title">
-								<h3>Categories</h3>
-							</div>
-<!-- 						</div>
- -->					</div>
+						<div class="page-title">
+							<h3>Categories</h3>
+						</div>
+					</div>
 				</div>
-				<p></p>
-
 
 				<!-- 	<div class="ibox-content"> -->
 
-				<form th:object="${categoryModel}" id="categoryModel"
-					name="categoryModel" method="post" th:action="@{/saveCategory}">
-					<!-- <input id="categoryId" type="hidden" th:field="*{categoryId}" /> -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-							<label>Category in English *</label>
-							<div class="form-group">
-								<input maxlength="200" th:field="*{categoryNameEng}"
-									id="categoryNameEng" class="form-control" required="required"
-									placeholder="category name in english" />
-							</div>
+			</div>
+			<!--  -->
 
-							<p id="requiredCatEn" style="color: red;">*this field is a
-								required field</p>
-							<p id="EnglishLettersOnly" style="color: red;">*only English
-								letters,&amp;,- are allowed</p>
-						</div>
-
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-							<label>Category in Arabic *</label>
-							<div class="form-group">
-								<input maxlength="200" th:field="*{categoryNameAr}"
-									id="categoryNameAr" class="form-control"
-									placeholder="category name in arabic" />
-							</div>
-							<p id="requiredCatAr" style="color: red;">*this field is a
-								required field</p>
-							<p id="onlyArabicCat" style="color: red;">*only arabic letters
-								are allowed</p>
-						</div>
+			<form th:object="${categoryModel}" id="categoryModel"
+				name="categoryModel" method="POST" enctype="multipart/form-data"
+				th:action="@{/categories}">
+				<input id="categoryid" type="hidden" th:field="*{categoryid}" />
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Category in English *</label>
 						<div class="form-group">
-							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-9">
-								<label for="exampleInputFile">image input</label> <input
-									type="file" class="form-control-file" id="exampleInputFile"
-									aria-describedby="fileHelp"> <small id="fileHelp"
-									class="form-text text-muted">This is some placeholder
-									block-level help text for the above input. It's a bit lighter
-									and easily wraps to a new line.</small>
-							</div>
+							<input maxlength="200" th:field="*{categoryNameEng}"
+								id="categoryNameEng" class="form-control"
+								placeholder="category name in english" />
 						</div>
 
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="btn-holder text-left">
-								<button id="addCategory" onclick="addCategory();"
-									class="btn btn-success" type="button">Add category</button>
-
-								<button onclick="addCategory()" class="btn btn-success"
-									id="saveCategory" type="button">Save</button>
-							</div>
-						</div>
-
-
-
-					</div>
-					<div class="modal inmodal" id="response-delete" tabindex="-1"
-						role="dialog" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content animated fadeIn">
-								<div class="modal-header">
-
-									<button type="button" class="close" data-dismiss="modal"
-										onclick="closeModal();">
-										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<h3 id="DeleteResult" class="no-margins text-center"></h3>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary"
-										onclick="closeModal();">Ok</button>
-								</div>
-							</div>
-						</div>
+						<p id="requiredCatEn" style="color: red;">*this field is a
+							required field</p>
+						<p id="EnglishLettersOnly" style="color: red;">*only English
+							letters,&amp;,- are allowed</p>
 					</div>
 
-					<!--<input type="hidden" id="_csrf" th:content="${_csrf.token}" /> <input
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Category in Arabic *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{categoryNameAr}"
+								id="categoryNameAr" class="form-control"
+								placeholder="category name in arabic" />
+						</div>
+						<p id="requiredCatAr" style="color: red;">*this field is a
+							required field</p>
+						<p id="onlyArabicCat" style="color: red;">*only arabic letters
+							are allowed</p>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Category Description in English *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{categoryDescriptionEn}"
+								id="categoryDescriptionEn" class="form-control"
+								placeholder="category description in english" />
+						</div>
+						<p id="requiredCatDescEn" style="color: red;">*this field is a
+							required field</p>
+						<p id="onlyEngCatDesc" style="color: red;">*only arabic
+							letters are allowed</p>
+					</div>
+
+
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						<label>Category Description in Arabic *</label>
+						<div class="form-group">
+							<input maxlength="200" th:field="*{categoryDescriptionAr}"
+								id="categoryDescriptionAr" class="form-control"
+								placeholder="category description in arabic" />
+						</div>
+						<p id="requiredCatDescAr" style="color: red;">*this field is a
+							required field</p>
+						<p id="onlyArCatDesc" style="color: red;">*only arabic letters
+							are allowed</p>
+					</div>
+
+
+
+
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-9 col-md-12 col-lg-12">
+							<label for="exampleInputFile">image Upload</label> <input
+								type="file" class="form-control-file" id="file" name="files"
+								aria-describedby="fileHelp"> <small id="fileHelp"
+								class="form-text text-muted" required='required'>please
+								choose image for the category to upload make sure that size
+								doesn't exceed 8 mb</small>
+							<p id="requiredImageField" style="color: red;">*this field is
+								a required field</p>
+						</div>
+						<input type="submit" value="Submit" style="display: none;" />
+					</div>
+
+
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="btn-holder text-left">
+							<button onclick="addCategory(event);" id="categoryAdd"
+								class="btn btn-success" type="submit">Add category</button>
+
+							<button onclick="addCategory(event)" class="btn btn-success"
+								id="saveCategory" type="button">Save</button>
+						</div>
+					</div>
+
+
+
+				</div>
+				<div class="modal inmodal" id="response-delete" tabindex="-1"
+					role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content animated fadeIn">
+							<div class="modal-header">
+
+								<button type="button" class="close" data-dismiss="modal"
+									onclick="closeModal();">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<h3 id="DeleteResult" class="no-margins text-center"></h3>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									onclick="closeModal();">Ok</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--<input type="hidden" id="_csrf" th:content="${_csrf.token}" /> <input
 					type="hidden" id="_csrfParam" th:content="${_csrf.parameterName}" /> 
 				  {{ csrf_field() }} this is equal to the 2 input tags  -->
 
-				</form>
-				<div class="horizontal-line">
-					<hr />
-				</div>
-				<!-- 
-											<div id="industryGrid">
-												<th:block
-													th:include="/generalSettingLookup/industryGridPartial"></th:block>
-											</div> -->
+			</form>
 
-				<!-- </div> -->
+
+			<div class="modal inmodal" id="delete" tabindex="-1" role="dialog"
+				aria-hidden="true">
+
+				<div class="modal-dialog">
+					<div class="modal-content animated fadeIn">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<h2 class="modal-title"></h2>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to delete?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="Dcancel" class="btn btn-white"
+								data-dismiss="modal">No</button>
+							<button type="button" id="Dok" class="btn btn-primary">Yes</button>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
+
+
+			<div class="horizontal-line">
+				<hr />
+			</div>
+			<div id="categoryGrid">
+				<th:block th:include="/Partials/categoryPartial"></th:block>
+			</div>
+
 		</div>
 	</div>
+	<!--<script th:src="@{//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js}"></script>-->
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

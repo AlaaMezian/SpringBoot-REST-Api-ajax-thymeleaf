@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.appcom.waffa.constant.Status;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -48,8 +52,20 @@ public class Items extends BaseEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
-	
 
+	@Column(name = "is_active")
+	@Enumerated(EnumType.STRING)
+	private Status isActive;
+
+
+
+	public Status getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(com.appcom.waffa.constant.Status y) {
+		this.isActive = y;
+	}
 
 	public int getId() {
 		return id;

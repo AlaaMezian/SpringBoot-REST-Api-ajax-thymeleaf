@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.appcom.waffa.entity.User;
-import com.appcom.waffa.model.LoginModel;
 import com.appcom.waffa.respository.UserRepository;
 
 @Service
@@ -31,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		 if (user == null) {
 	            throw new UsernameNotFoundException("username " + username
 	                    + " not found");
-//				throw new NotFoundException("User Not Found");
+
 
 	        }
 		 else  {

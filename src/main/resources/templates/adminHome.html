@@ -7,10 +7,6 @@
 <div th:replace="fragments/header-css :: header-css"></div>
 
 
-
-
-
-
 <body>
 	<!--  <div th:replace="fragments/header :: header"/>-->
 	<div th:replace="fragments/leftnav :: leftnav"></div>
@@ -39,17 +35,14 @@
 
 			<div class="content mt-3">
 
-				<div class="col-sm-12">
-					<div class="alert  alert-success alert-dismissible fade show"
-						role="alert">
-						<span class="badge badge-pill badge-success">Logged In</span>
-						Hello Welcome to the admin dashboard have a nice working day :)
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				</div>
+			   <div class="col-sm-12">
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                  <span class="badge badge-pill badge-success">Success</span> You successfully logged in have a nice day :)
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
 
 
 				<div class="col-sm-6 col-lg-3">
@@ -169,16 +162,13 @@
 
 	<div th:replace="fragments/footer :: footer"></div>
 
-	<script src="../static/js/vendor/jquery-2.1.4.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-	<script src="../static/js/plugins.js"></script>
-	<script src="../../../static/js/main.js"></script>
+	<script src="js/plugins.js"></script>
 
 
-	<script src="../static/js/lib/chart-js/Chart.bundle.js"></script>
-	<script src="../static/js/dashboard.js"></script>
-	<script src="../static/js/widgets.js"></script>
+    <script src="js/dashboard.js"></script>
+	<script src="js/widgets.js"></script>
 
 	<script>
         ( function ( $ ) {
@@ -196,7 +186,7 @@
                 scaleColors: [ '#1de9b6', '#03a9f5' ],
                 normalizeFunction: 'polynomial'
             } );
-        } )( jQuery );
+        } );
     </script>
 
 </body>

@@ -1,9 +1,11 @@
 package com.appcom.waffa.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +16,14 @@ import com.appcom.waffa.constant.Status;
 import com.appcom.waffa.entity.Booking;
 import com.appcom.waffa.entity.Items;
 import com.appcom.waffa.entity.User;
-import com.appcom.waffa.exceptions.BadRequestException;
+import com.appcom.waffa.entity.WorkingTimes;
+import com.appcom.waffa.exceptions.FailedException;
 import com.appcom.waffa.exceptions.InternalServerErrorException;
 import com.appcom.waffa.model.BookingModel;
 import com.appcom.waffa.respository.BookingRepository;
 import com.appcom.waffa.respository.ItemsRepository;
 import com.appcom.waffa.respository.UserRepository;
+import com.appcom.waffa.respository.WorkingTimesRepository;
 import com.appcom.waffa.utils.AppConstants;
 import com.appcom.waffa.utils.DateUtil;;
 
@@ -30,6 +34,9 @@ public class BookingServiceImp implements BookingService {
 
 	@Autowired
 	public BookingRepository bookingRepository;
+
+	@Autowired
+	public WorkingTimesRepository workingTimesRepository;
 
 	@Autowired
 	public UserRepository userRepository;
@@ -140,24 +147,26 @@ public class BookingServiceImp implements BookingService {
 		String endTime = bookingMdl.getBookingEndTime();
 		Appointment.setEndTime(endTime);
 
-		SimpleDateFormat format = new SimpleDateFormat("hh:mm a"); // if 24 hour format
-		try {
-			java.util.Date d1 = (java.util.Date) format.parse(startTime);
-			java.util.Date d2 = (java.util.Date) format.parse(endTime);
-			java.sql.Time firstTime = new java.sql.Time(d1.getTime());
-			java.sql.Time seconedTime = new java.sql.Time(d2.getTime());
-			if (seconedTime.before(firstTime)) {
-				throw new BadRequestException("Bad Request Error");
-
-			}
-		} catch (Exception e) {
-			throw new BadRequestException("the time of the booking is not valid ,please check and try again later");
-		}
+		// SimpleDateFormat format = new SimpleDateFormat("hh:mm a"); // if 24 hour
+		// format
+		// try {
+		// java.util.Date d1 = (java.util.Date) format.parse(startTime);
+		// java.util.Date d2 = (java.util.Date) format.parse(endTime);
+		// java.sql.Time firstTime = new java.sql.Time(d1.getTime());
+		// java.sql.Time seconedTime = new java.sql.Time(d2.getTime());
+		// if (seconedTime.before(firstTime)) {
+		// throw new BadRequestException("Bad Request Error");
+		//
+		// }
+		// } catch (Exception e) {
+		// throw new BadRequestException("the time of the booking is not valid ,please
+		// check and try again later");
+		// }
 
 		Appointment.setUser(user);
 
 		Appointment.setItem(items);
-		bookingRepository.saveAndFlush(Appointment);
+		bookingRepository.save(Appointment);
 		return Appointment;
 
 	}
@@ -197,17 +206,20 @@ public class BookingServiceImp implements BookingService {
 		}
 	}
 
+	// available start time
 	@Override
 	public List<String> getAllAvailableTimes(String date) {
 		Date dateToFiltter = DateUtil.convertStringToDate(date);
-		List<Booking> bookingList = bookingRepository.findAllBookingByStartDate(dateToFiltter);
+	
+		List<Booking> bookingList = bookingRepository.findAllBookingByStartDateAndIsActive(dateToFiltter, Status.Y);
+		List<WorkingTimes> workingTimes = workingTimesRepository.findAllWorkingTimesByIsActive(Status.Y);
 		ArrayList<String> availableTime = new ArrayList<String>() {
 			{
 				add("10:00 am");
 				add("11:00 am");
 				add("12:00 pm");
 				add("01:00 pm");
-				add("02:00pm");
+				add("02:00 pm");
 				add("03:00 pm");
 				add("04:00 pm");
 				add("05:00 pm");
@@ -220,16 +232,66 @@ public class BookingServiceImp implements BookingService {
 		};
 
 		List<String> unAvailableTimeList = new ArrayList<>();
+		List<String> unAvailableTimeListEnd = new ArrayList<>();
+		Set<String> inBetweenSet = new LinkedHashSet<>();
+		Set<String> moreThanThreeTimes = new LinkedHashSet<>();
+
 		String bookingStartTime;
 		String bookingEndTime;
+		Integer indexOfEndTime = null;
+		int count = 0;
+		int endTimeCount = 0;
+		try {
 		for (Booking book : bookingList) {
 			bookingStartTime = book.getStartTime();
 			bookingEndTime = book.getEndTime();
 			unAvailableTimeList.add(bookingStartTime);
-			unAvailableTimeList.add(bookingEndTime);
-		}
 
-		availableTime.removeAll(unAvailableTimeList);
+			if (Collections.frequency(unAvailableTimeList, unAvailableTimeList.get(count)) >= 3) {
+				moreThanThreeTimes.add(unAvailableTimeList.get(count));
+			}
+			
+			++count;
+			
+			if (bookingEndTime != null) {
+				unAvailableTimeListEnd.add(bookingEndTime);
+
+				if (!unAvailableTimeListEnd.isEmpty()) {
+
+					if (Collections.frequency(unAvailableTimeListEnd, unAvailableTimeListEnd.get(endTimeCount)) >= 3) {
+                        
+						String endTime = unAvailableTimeListEnd.get(endTimeCount);// have the end time string that value is the
+																			// list for more than three times
+						indexOfEndTime = availableTime.indexOf(bookingEndTime); // the index of the end time in the available
+																			// time array for example 5
+
+					}
+					++endTimeCount;
+
+					for (String startTimeString : moreThanThreeTimes) {
+						int startTime = availableTime.indexOf(startTimeString); // the index of the start time in the
+									 											// available time array
+						// now i want to get the indexes of elements between those two values
+						if (indexOfEndTime != null) {
+							for (int i = startTime+1; i < indexOfEndTime; i++) {
+//								if(inBetweenList.contains(availableTime.get(i))){ // || moreThanThreeTimes.contains(availableTime.get(i))) {
+//								break;
+// 							}else {
+									inBetweenSet.add(availableTime.get(i));	
+//								}
+							}
+						}
+					}
+				}
+			}
+
+		}}catch (Exception e) {
+		throw new FailedException("failed to get available list due to system error ");
+		} 
+
+		availableTime.removeAll(moreThanThreeTimes);
+		availableTime.removeAll(inBetweenSet);
+
 		return availableTime;
 	}
 

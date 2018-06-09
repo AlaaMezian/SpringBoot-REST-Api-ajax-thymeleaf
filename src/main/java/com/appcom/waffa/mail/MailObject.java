@@ -1,9 +1,9 @@
 package com.appcom.waffa.mail;
 
-import org.hibernate.validator.constraints.Email;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 public class MailObject {
     @Email

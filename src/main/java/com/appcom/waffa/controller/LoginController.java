@@ -3,7 +3,6 @@ package com.appcom.waffa.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.hamcrest.text.IsEmptyString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,7 @@ public class LoginController {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "/api/v1/login", method = RequestMethod.POST)
-	public ResponseEntity<CustomResponse> login(HttpServletRequest request, @Valid @RequestBody LoginModel loginModel) {
+	public ResponseEntity<CustomResponse> loginApi(HttpServletRequest request, @Valid @RequestBody LoginModel loginModel) {
 		logger.info("custom api end point reached -------------------------------------------------");
 		AuthenticatedUser user = customUserDetailsService.loadUserByUsername(loginModel.getUsername());
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success, user), HttpStatus.OK);

@@ -1,6 +1,5 @@
-$.noConflict();
-
-jQuery(document).ready(function($) {
+//$.noConflict();
+$(document).ready(function($) {
 
 	"use strict";
 
@@ -8,12 +7,12 @@ jQuery(document).ready(function($) {
 		new SelectFx(el);
 	} );
 
-	jQuery('.selectpicker').selectpicker;
+	$('.selectpicker').selectpicker;
 
 
-	$('#menuToggle').on('click', function(event) {
-		$('body').toggleClass('open');
-	});
+//	$('#menuToggle').on('click', function(event) {
+//		$('body').toggleClass('open');
+//	});
 
 	$('.search-trigger').on('click', function(event) {
 		event.preventDefault();

@@ -33,34 +33,28 @@ public class LogOutController {
 
 	@Autowired
 	private LogoutService logoutService;
-	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
 
-    private Map<String, String> getHeadersInfo(HttpServletRequest request) {
+	private Map<String, String> getHeadersInfo(HttpServletRequest request) {
 
-        Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();
 
-        Enumeration headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
-            String value = request.getHeader(key);
-            map.put(key, value);
-        }
+		Enumeration headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String key = (String) headerNames.nextElement();
+			String value = request.getHeader(key);
+			map.put(key, value);
+		}
 
-        return map;
-    }
-
-    
+		return map;
+	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public ResponseEntity<CustomResponse> logout(HttpServletRequest request) {
 		String token = request.getHeader("authorization");
-		String tokenOriginal = token.replace("Bearer ","");
-		System.out.println(getHeadersInfo(request));		
+		String tokenOriginal = token.replace("Bearer ", "");
 		try {
-			Jws<Claims> claims = Jwts.parser().requireSubject("JwtToken")
-					.setSigningKey(SECRET.getBytes()).parseClaimsJws(tokenOriginal);
+			Jws<Claims> claims = Jwts.parser().requireSubject("JwtToken").setSigningKey(SECRET.getBytes())
+					.parseClaimsJws(tokenOriginal);
 
 			Integer userId = claims.getBody().get("id", Integer.class);
 

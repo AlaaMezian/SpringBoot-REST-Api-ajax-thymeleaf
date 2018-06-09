@@ -101,12 +101,15 @@ public class UserServiceImpl implements UserService {
 		if (userEntity == null) {
 			throw new BadRequestException("sorry the user you are trying to edit is no longer registered");
 		} 
-		else {
+		try {
 			userEntity.setUserEmail(userModel.getEmail());
 			userEntity.setMobileNumber(userModel.getMobile());
-			userEntity.setPassword(userModel.getPassword());
+			userRepository.save(userEntity);
+		}catch(Exception e)
+		{
+			throw new BadRequestException("email or mobile number for other user already exist");
 		}
-		userRepository.save(userEntity);
+	
 
 	}
 
@@ -114,6 +117,7 @@ public class UserServiceImpl implements UserService {
 	public void signUpAdmin(AdminUserModel adminModel) {
 		AdminUser admin = new AdminUser();
 		admin.setIsActive(Status.Y);
+		
 		admin.setPassword(bCryptPasswordEncoder.encode(adminModel.getPass()));
 		admin.setUserEmail(adminModel.getUserEmail());
 		admin.setUserName(adminModel.getUserName());

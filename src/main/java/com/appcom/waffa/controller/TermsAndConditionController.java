@@ -19,7 +19,7 @@ public class TermsAndConditionController {
 	@Autowired
 	private TermsAndConditionService termsAndConditionService;
 	
-	@RequestMapping(value = "/termsAndCondition", method = RequestMethod.GET)
+	@RequestMapping(value = "/termsAndCondition", method = RequestMethod.GET,produces = "application/json")
 	public ResponseEntity<CustomResponse> getTermsAndCondition()
 	{
 		TermsAndCondition terms = termsAndConditionService.getTermsAndCondition();

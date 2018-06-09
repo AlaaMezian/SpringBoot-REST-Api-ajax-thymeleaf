@@ -1,8 +1,7 @@
 package com.appcom.waffa.model;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.multipart.MultipartFile;
 
 @Validated
 public class ItemModel {
@@ -16,9 +15,15 @@ public class ItemModel {
 	private String price; 
 	private String itemImageUrl;
 	private int categoryId;
+	private MultipartFile[] files;
 	
 	
-	
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
+	}
 	public int getCategoryId() {
 		return categoryId;
 	}

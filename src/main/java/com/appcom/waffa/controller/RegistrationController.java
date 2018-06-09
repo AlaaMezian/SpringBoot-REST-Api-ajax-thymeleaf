@@ -27,7 +27,7 @@ public class RegistrationController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/api/v1/signup", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/v1/signup", method = RequestMethod.POST,produces = "application/json")
 	public ResponseEntity<CustomResponse> signup(HttpServletRequest request,
 			@Valid @RequestBody RegistrationModel registrationModel) {
 		userService.saveUser(registrationModel);
@@ -35,7 +35,7 @@ public class RegistrationController {
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/signup" }, method = RequestMethod.POST,produces = "application/json")
 	public ResponseEntity<CustomResponse> createAdminUser(@Valid @RequestBody AdminUserModel user) {
 		userService.signUpAdmin(user);
 		return new ResponseEntity<CustomResponse>(new CustomResponse(CommonSuccessCode.Success), HttpStatus.OK);

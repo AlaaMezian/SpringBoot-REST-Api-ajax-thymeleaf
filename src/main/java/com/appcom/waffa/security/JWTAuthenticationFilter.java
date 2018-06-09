@@ -23,7 +23,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.appcom.waffa.entity.Token;
 import com.appcom.waffa.entity.User;
@@ -91,9 +90,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .compact();
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
         
+        //this should be for firebase 
         String reqToken =req.getHeader("device_token");
         Token device_token = new Token(reqToken);
         user.setTokenFCM(device_token);
+        ////////////////
         userRespoisitory.save(user);
         ServletOutputStream responseOutPutStream = res.getOutputStream();
 

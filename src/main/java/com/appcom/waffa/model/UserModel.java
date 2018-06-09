@@ -1,17 +1,8 @@
 package com.appcom.waffa.model;
 
 public class UserModel {
-	private  String password;
 	private String email;
 	private String mobile;
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 
 	public String getEmail() {
